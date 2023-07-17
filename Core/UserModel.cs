@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core
+﻿namespace Core
 {
-    internal class UserModel
+    public class UserModel : IConfiguration
     {
-        public string Name { get; set; }
-        public string Password { get; set; }
+        public string SectionName => "User";
 
-        public UserModel(string name, string password)
-        {
-            Name = name;
-            Password = password;
-        }
+        public string Login { get; set; }
+        public string Password { get; set; }
     }
 }

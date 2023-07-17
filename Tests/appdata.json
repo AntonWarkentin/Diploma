@@ -1,0 +1,18 @@
+﻿{
+  "Browser": {
+    "TypeBrowser": "Chrome",
+    "Headless": "false",
+    "TimeOut": "5",
+    "StartUrl": "https://app.qase.io"
+  },
+
+  "Api": {
+    "BaseUrl": "https://api.qase.io/v1",
+    "Token": "61c71c3170e37edf56d6b3bf6a584030cc4176249b8d880f63c51465ef315691"
+  },
+
+  "User": {
+    "Login": "reddoshoruda@gmail.com",
+    "Password": "Neop1989"
+  }
+}

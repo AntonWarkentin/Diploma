@@ -1,8 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System;
-using System.IO;
+﻿using OpenQA.Selenium;
 
 namespace Core
 {
@@ -28,22 +24,9 @@ namespace Core
 
         private Browser()
         {
-            var implicitWait = JObject.Parse(File.ReadAllText("appdata.json"))["ImplicitWait"].ToObject<double>();
-            var downloadPath = JObject.Parse(File.ReadAllText("appdata.json"))["DownloadPath"];
-
-            if (downloadPath != null)
-            {
-                var chromeOptions = new ChromeOptions();
-                chromeOptions.AddUserProfilePreference("download.default_directory", downloadPath.ToString());
-
-                driver = new ChromeDriver(chromeOptions);
-            }
-            else
-            {
-                driver = new ChromeDriver();
-            }
+            driver = WebDriverFactory.CreateChromeDriver();
             
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(implicitWait);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(AppConfiguration.Browser.TimeOut);
             driver.Manage().Window.Maximize();
         }
 

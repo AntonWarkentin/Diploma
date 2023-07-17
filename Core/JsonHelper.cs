@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using RestSharp;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Core
 {
