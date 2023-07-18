@@ -18,9 +18,11 @@ namespace BusinessObjects.PageObjects
         public ProjectPage CreateNewProject()
         {
             var faker = new Faker();
-            var code = faker.Hacker.Abbreviation();
 
-            driver.FindElement(ProjectNameInput).SendKeys(faker.Hacker.Noun());
+            var name = faker.Hacker.Noun();
+            var code = faker.Hacker.Abbreviation() + faker.Random.Number();
+
+            driver.FindElement(ProjectNameInput).SendKeys(name);
 
             driver.FindElement(ProjectCodeInput).Clear();
             driver.FindElement(ProjectCodeInput).SendKeys(code);
@@ -29,7 +31,7 @@ namespace BusinessObjects.PageObjects
 
             driver.FindElement(SubmitButton).Click();
 
-            return new ProjectPage(code);
+            return new ProjectPage(name, code);
         }
     }
 }

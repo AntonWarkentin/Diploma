@@ -8,11 +8,12 @@ namespace Tests
         [Test]
         public void CreateNewProjects()
         {
-            var newProject = new LoginPage().
+            new LoginPage().
                 OpenPage().
                 Login().
                 OpenCreateNewProjectModal().
-                CreateNewProject();
+                CreateNewProject().
+                CheckOutProjectNameAndCode();
         }
 
         [TearDown]

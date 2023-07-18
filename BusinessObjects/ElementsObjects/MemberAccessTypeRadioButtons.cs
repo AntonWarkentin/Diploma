@@ -19,7 +19,9 @@ namespace BusinessObjects.ElementsObjects
 
         public override void CheckOneOption<MemberAccessOptions>(MemberAccessOptions memberAccessOption)
         {
-            ElementsObjects.MemberAccessOptions optionToCheck = (ElementsObjects.MemberAccessOptions)(object)memberAccessOption;
+            var optionToCheck = (ElementsObjects.MemberAccessOptions)(object)memberAccessOption;
+
+            Thread.Sleep(1000);
 
             driver.FindElement(radioButtons[optionToCheck]).Click();
             Assert.IsTrue(driver.FindElement(radioButtons[optionToCheck]).Selected);
