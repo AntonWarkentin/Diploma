@@ -12,8 +12,8 @@ namespace BusinessObjects.PageObjects
 
         private By SubmitButton = By.XPath("//button[@type='submit']");
 
-        private ProjectAccessTypeCheckboxes projectAccess = new ();
-        private MemberAccessTypeCheckboxes memberAccess = new ();
+        private ProjectAccessTypeRadioButtons projectAccess = new ();
+        private MemberAccessTypeRadioButtons memberAccess = new ();
 
         public ProjectPage CreateNewProject()
         {
@@ -25,7 +25,7 @@ namespace BusinessObjects.PageObjects
             driver.FindElement(ProjectCodeInput).Clear();
             driver.FindElement(ProjectCodeInput).SendKeys(code);
 
-            projectAccess.CheckOneOption(ProjectAccessTypeCheckboxes.options.PublicRadioButton.ToString());
+            memberAccess.CheckOneOption(MemberAccessOptions.AddMembersFromGroupRadioButton);
 
             driver.FindElement(SubmitButton).Click();
 
