@@ -7,7 +7,7 @@ namespace Core
     public class AppConfiguration
     {
         public static BrowserConfiguration Browser => BindConfiguration<BrowserConfiguration>();
-        public static UserModel User => BindConfiguration<UserModel>();
+        public static UserConfiguration User => BindConfiguration<UserConfiguration>();
 
         private static IConfigurationRoot configurationRoot;
 

@@ -1,6 +1,6 @@
 ﻿namespace Core
 {
-    public class UserModel : IConfiguration
+    public class UserConfiguration : IConfiguration
     {
         public string SectionName => "User";
 

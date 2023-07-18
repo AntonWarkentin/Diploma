@@ -1,8 +1,8 @@
 ﻿using OpenQA.Selenium;
 using Bogus;
-using NUnit.Framework;
+using BusinessObjects.ElementsObjects;
 
-namespace BusinessObjects
+namespace BusinessObjects.PageObjects
 {
     public class CreateNewProjectModal : ProjectsPage
     {
@@ -10,14 +10,10 @@ namespace BusinessObjects
         private By ProjectCodeInput = By.XPath("//input[@id='project-code']");
         private By ProjectDescriptionArea = By.XPath("//textarea[@id='description-area']");
 
-        private By PrivateRadioButton = By.XPath("//input[@value='private']");
-        private By PublicRadioButton = By.XPath("//input[@value='public']");
-
-        private By AddAllMembersRadioButton = By.XPath("//input[@value='all']");
-        private By AddMembersFromGroupRadioButton = By.XPath("//input[@value='group']");
-        private By DontAddMembersRadioButton = By.XPath("//input[@value='none']");
-
         private By SubmitButton = By.XPath("//button[@type='submit']");
+
+        private ProjectAccessTypeCheckboxes projectAccess = new ();
+        private MemberAccessTypeCheckboxes memberAccess = new ();
 
         public ProjectPage CreateNewProject()
         {
@@ -29,11 +25,7 @@ namespace BusinessObjects
             driver.FindElement(ProjectCodeInput).Clear();
             driver.FindElement(ProjectCodeInput).SendKeys(code);
 
-            var privateRadioButton = driver.FindElement(PrivateRadioButton);
-            var publicRadioButton = driver.FindElement(PublicRadioButton);
-            publicRadioButton.Click();
-            Assert.IsTrue(publicRadioButton.Selected);
-            Assert.IsFalse(privateRadioButton.Selected);
+            projectAccess.CheckOneOption(ProjectAccessTypeCheckboxes.options.PublicRadioButton.ToString());
 
             driver.FindElement(SubmitButton).Click();
 

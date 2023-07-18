@@ -1,7 +1,7 @@
 ﻿using Core;
 using OpenQA.Selenium;
 
-namespace BusinessObjects
+namespace BusinessObjects.PageObjects
 {
     public class ProjectsPage : BasePage
     {

@@ -1,4 +1,4 @@
-﻿using BusinessObjects;
+﻿using BusinessObjects.PageObjects;
 using Core;
 
 namespace Tests

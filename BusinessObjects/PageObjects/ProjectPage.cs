@@ -1,6 +1,6 @@
 ﻿using Core;
 
-namespace BusinessObjects
+namespace BusinessObjects.PageObjects
 {
     public class ProjectPage : BasePage
     {
@@ -12,7 +12,7 @@ namespace BusinessObjects
         public ProjectPage(string projectCode)
         {
             this.projectCode = projectCode;
-            url = String.Format(url, projectCode);
+            url = string.Format(url, projectCode);
         }
     }
 }
