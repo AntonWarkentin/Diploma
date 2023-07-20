@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using BusinessObjects.DataModels;
+using Core.BaseObjects;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
@@ -7,30 +8,24 @@ namespace BusinessObjects.PageObjects
     public class ProjectPage : BasePage
     {
         string url = "https://app.qase.io/project/{0}";
-        private string projectName;
-        private string projectCode;
+        string code;
 
         private By ProjectName = By.XPath("//img[contains(@src, 'project')]//following::div[1]");
         private By ProjectCode = By.XPath("//div[@id='application-content']//h1");
+        private By Settings = By.XPath("//a[@title='Settings']");
 
-        public override ProjectPage OpenPage() => (ProjectPage)BaseOpenPage();
+        public override ProjectPage OpenPage() => (ProjectPage)base.OpenPage();
 
-        public ProjectPage(string projectName, string projectCode)
+        public ProjectPage(string projectCode) : base()
         {
-            this.projectName = projectName;
-            this.projectCode = projectCode;
+            code = projectCode;
             url = string.Format(url, projectCode);
         }
 
-        public void CheckOutProjectNameAndCode()
+        public ProjectGeneralSettingsPage OpenSettings()
         {
-            Thread.Sleep(1000);
-
-            string nameOnForm = driver.FindElement(ProjectName).Text;
-            string codeOnForm = driver.FindElement(ProjectCode).Text.Split(" ")[0];
-
-            Assert.That(nameOnForm, Is.EqualTo(projectName));
-            Assert.That(codeOnForm, Is.EqualTo(projectCode));
+            driver.FindElement(Settings).Click();
+            return new ProjectGeneralSettingsPage(code);
         }
     }
 }

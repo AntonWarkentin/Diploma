@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System.IO;
 
 namespace Core
 {

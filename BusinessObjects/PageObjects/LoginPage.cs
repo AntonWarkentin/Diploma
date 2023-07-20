@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.BaseObjects;
 using OpenQA.Selenium;
 
 namespace BusinessObjects.PageObjects
@@ -11,7 +12,9 @@ namespace BusinessObjects.PageObjects
         private By PasswordInput = By.XPath("//input[@name='password']");
         private By SignInButton = By.XPath("//button[@type='submit']");
 
-        public override LoginPage OpenPage() => (LoginPage)BaseOpenPage();
+        public LoginPage() : base() { }
+
+        public override LoginPage OpenPage() => (LoginPage)base.OpenPage();
 
         public ProjectsPage Login()
         {

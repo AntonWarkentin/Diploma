@@ -1,4 +1,4 @@
-﻿using Core;
+﻿using Core.BaseObjects;
 using NUnit.Framework;
 using OpenQA.Selenium;
 

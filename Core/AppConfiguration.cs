@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System.IO;
-using System.Text.Json;
 
 namespace Core
 {

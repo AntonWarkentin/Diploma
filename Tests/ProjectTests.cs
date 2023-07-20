@@ -1,4 +1,5 @@
-﻿using BusinessObjects.PageObjects;
+﻿using Bogus;
+using BusinessObjects.PageObjects;
 using Core;
 
 namespace Tests
@@ -6,14 +7,25 @@ namespace Tests
     public class ProjectTests
     {
         [Test]
-        public void CreateNewProjects()
+        public void CreateNewProject()
+        {
+            var testData = NewProjectDataModelFiller.CreateProjectWithFakedValues();
+
+            new LoginPage().
+                OpenPage().
+                Login().
+                CreateNewProject(testData).
+                OpenSettings().
+                CheckOutProjectSettings(testData);
+        }
+
+        [Test]
+        public void DeleteProject()
         {
             new LoginPage().
                 OpenPage().
                 Login().
-                OpenCreateNewProjectModal().
-                CreateNewProject().
-                CheckOutProjectNameAndCode();
+                DeleteProject("VVVVV");
         }
 
         [TearDown]
