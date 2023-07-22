@@ -1,7 +1,6 @@
-﻿using BusinessObjects.DataModels;
+﻿using BusinessObjects.DataModels.UI;
 using Core.BaseObjects.UI;
 using NUnit.Framework;
-using OpenQA.Selenium;
 
 namespace BusinessObjects.UI.PageObjects
 {
@@ -9,9 +8,9 @@ namespace BusinessObjects.UI.PageObjects
     {
         string url = "https://app.qase.io/project/{0}/settings/general";
 
-        private By ProjectName = By.XPath("//input[@id='project-name']");
-        private By ProjectCode = By.XPath("//input[@id='project-code']");
-        private By Description = By.XPath("//textarea[@id='description-area']");
+        private TextField ProjectNameField = new("//input[@id='project-name']");
+        private TextField ProjectCodeField = new("//input[@id='project-code']");
+        private TextField DescriptionField = new("//textarea[@id='description-area']");
 
         public ProjectGeneralSettingsPage(string projectCode) : base()
         {
@@ -24,9 +23,9 @@ namespace BusinessObjects.UI.PageObjects
         {
             var dataOnForm = new NewProjectDataModel()
             {
-                Name = driver.FindElement(ProjectName).GetAttribute("value"),
-                Code = driver.FindElement(ProjectCode).GetAttribute("value"),
-                Description = driver.FindElement(Description).Text
+                Name = ProjectNameField.GetAttribute("value"),
+                Code = ProjectCodeField.GetAttribute("value"),
+                Description = DescriptionField.Text
             };
 
             Assert.That(dataOnForm, Is.EqualTo(dataExpected));

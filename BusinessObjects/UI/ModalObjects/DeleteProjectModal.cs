@@ -1,15 +1,14 @@
 ﻿using Core.BaseObjects.UI;
-using OpenQA.Selenium;
 
 namespace BusinessObjects.UI.ModalObjects
 {
-    internal class DeleteProjectModal : BaseElement
+    internal class DeleteProjectModal : BaseObject
     {
-        private By DeleteConfirmButton = By.XPath("//span[text()='Delete project']/ancestor::button");
-        private By DeleteCancelButton = By.XPath("//span[text()='Cancel']/ancestor::button");
+        private Button DeleteConfirmButton = new("//span[text()='Delete project']/ancestor::button");
+        private Button DeleteCancelButton = new("//span[text()='Cancel']/ancestor::button");
 
         public DeleteProjectModal() : base() { }
 
-        public void ConfirmDelete() => driver.FindElement(DeleteConfirmButton).Click();
+        public void ConfirmDelete() => DeleteConfirmButton.Click();
     }
 }

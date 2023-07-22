@@ -1,5 +1,7 @@
-﻿using BusinessObjects.DataModels;
-using BusinessObjects.PageObjects;
+﻿using BusinessObjects.API;
+using BusinessObjects.DataModels.UI;
+using BusinessObjects.UI.PageObjects;
+using Core.Helpers;
 using Core.SeleniumObjects;
 
 namespace Tests
@@ -22,10 +24,14 @@ namespace Tests
         [Test]
         public void DeleteProject()
         {
+            var response = new ProjectApiService().GetAllProjects();
+            var codeToDelete = response.GetLastEntry("result.entities[*].code").ToString();
+
             new LoginPage().
                 OpenPage().
                 Login().
-                DeleteProject("VVVVV");
+                DeleteProject(codeToDelete).
+                AssertProjectExistence(codeToDelete, false);
         }
 
         [TearDown]

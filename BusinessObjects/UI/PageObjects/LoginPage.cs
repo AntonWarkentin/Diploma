@@ -1,6 +1,5 @@
 ﻿using Core.BaseObjects.UI;
 using Core.Configuration.Logic;
-using OpenQA.Selenium;
 
 namespace BusinessObjects.UI.PageObjects
 {
@@ -8,9 +7,9 @@ namespace BusinessObjects.UI.PageObjects
     {
         string url = "https://app.qase.io/login";
 
-        private By EmailInput = By.XPath("//input[@name='email']");
-        private By PasswordInput = By.XPath("//input[@name='password']");
-        private By SignInButton = By.XPath("//button[@type='submit']");
+        private TextField EmailField = new("//input[@name='email']");
+        private TextField PasswordField = new("//input[@name='password']");
+        private Button SignInButton = new("//button[@type='submit']");
 
         public LoginPage() : base() { }
 
@@ -18,9 +17,9 @@ namespace BusinessObjects.UI.PageObjects
 
         public ProjectsPage Login()
         {
-            driver.FindElement(EmailInput).SendKeys(AppConfiguration.User.Login);
-            driver.FindElement(PasswordInput).SendKeys(AppConfiguration.User.Password);
-            driver.FindElement(SignInButton).Click();
+            EmailField.SendKeys(AppConfiguration.User.Login);
+            PasswordField.SendKeys(AppConfiguration.User.Password);
+            SignInButton.Click();
             return new ProjectsPage();
         }
     }

@@ -5,13 +5,13 @@ using RestSharp;
 
 namespace BusinessObjects.API
 {
-    public class TestCaseService : BaseApiService
+    public class TestCaseApiService : BaseApiService
     {
         public string ProjectEndpoint = "/case/{code}";
         public string TestCaseEndpoint = "/case/{code}/{id}";
         public string TestCaseBulkEndpoint = "/case/{code}/bulk";
 
-        public TestCaseService() : base()
+        public TestCaseApiService() : base()
         {
             apiClient.AddToken();
         }

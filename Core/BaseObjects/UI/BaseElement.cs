@@ -1,16 +1,23 @@
-﻿using Core.SeleniumObjects;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace Core.BaseObjects.UI
 {
-    public abstract class BaseElement
+    public class BaseElement : BaseObject
     {
-        protected IWebDriver driver;
+        public IWebElement GetElement() => driver.FindElement(locator);
+        protected By locator;
 
-        public BaseElement()
+        public string Text { get => this.GetElement().Text; }
+        public bool Selected { get => this.GetElement().Selected; }
+
+        public BaseElement(string xpath)
         {
-            Thread.Sleep(1000);
-            driver = Browser.Instance.Driver;
+            locator = By.XPath(xpath);
+        }
+
+        public string GetAttribute(string attributeName)
+        {
+            return this.GetElement().GetAttribute(attributeName);
         }
     }
 }

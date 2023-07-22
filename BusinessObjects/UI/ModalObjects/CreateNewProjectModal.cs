@@ -1,34 +1,30 @@
-﻿using OpenQA.Selenium;
-using BusinessObjects.DataModels;
+﻿using BusinessObjects.DataModels.UI;
 using BusinessObjects.UI.RadioButtonObjects;
 using Core.BaseObjects.UI;
 
 namespace BusinessObjects.UI.ModalObjects
 {
-    public class CreateNewProjectModal : BaseElement
+    public class CreateNewProjectModal : BaseObject
     {
         private ProjectAccessTypeRadioButtons projectAccess = new();
         private MemberAccessTypeRadioButtons memberAccess = new();
 
-        private By ProjectNameInput = By.XPath("//input[@id='project-name']");
-        private By ProjectCodeInput = By.XPath("//input[@id='project-code']");
-        private By ProjectDescriptionArea = By.XPath("//textarea[@id='description-area']");
-        private By SubmitButton = By.XPath("//button[@type='submit']");
+        private TextField ProjectNameInput = new("//input[@id='project-name']");
+        private TextField ProjectCodeInput = new("//input[@id='project-code']");
+        private TextField ProjectDescriptionArea = new("//textarea[@id='description-area']");
+        private Button SubmitButton = new("//button[@type='submit']");
 
         public CreateNewProjectModal() : base() { }
 
         public void FillNewProjectData(NewProjectDataModel dataModel)
         {
-            driver.FindElement(ProjectNameInput).SendKeys(dataModel.Name);
-
-            driver.FindElement(ProjectCodeInput).Clear();
-            driver.FindElement(ProjectCodeInput).SendKeys(dataModel.Code);
-
-            driver.FindElement(ProjectDescriptionArea).SendKeys(dataModel.Description);
+            ProjectNameInput.SendKeys(dataModel.Name);
+            ProjectCodeInput.SendKeys(dataModel.Code);
+            ProjectDescriptionArea.SendKeys(dataModel.Description);
 
             memberAccess.CheckOneOption(MemberAccessOptions.AddMembersFromGroupRadioButton);
 
-            driver.FindElement(SubmitButton).Click();
+            SubmitButton.Click();
         }
     }
 }

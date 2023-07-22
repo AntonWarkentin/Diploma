@@ -5,13 +5,13 @@ using RestSharp;
 
 namespace BusinessObjects.API
 {
-    public class ProjectService : BaseApiService
+    public class ProjectApiService : BaseApiService
     {
         public string ProjectEndpoint = "/project";
         public string ProjectByCodeEndpoint = "/project/{code}";
         public string ProjectAccessEndpoint = "/project/{code}/access";
 
-        public ProjectService() : base()
+        public ProjectApiService() : base()
         {
             apiClient.AddToken();
         }

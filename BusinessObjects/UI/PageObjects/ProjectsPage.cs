@@ -1,25 +1,25 @@
-﻿using Bogus;
-using BusinessObjects.DataModels;
+﻿using BusinessObjects.DataModels.UI;
 using BusinessObjects.UI.ModalObjects;
 using Core.BaseObjects.UI;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace BusinessObjects.UI.PageObjects
 {
     public class ProjectsPage : BasePage
     {
-        private CreateNewProjectModal CreateNewProjectModal => new CreateNewProjectModal();
-        private DeleteProjectModal DeleteProjectModal => new DeleteProjectModal();
-
         string url = "https://app.qase.io/projects";
+
+        private CreateNewProjectModal CreateNewProjectModal => new ();
+        private DeleteProjectModal DeleteProjectModal => new ();
+
         private string DropdownButtonXpath = "//div[@class='dropdown-item']//a[contains(@href,'{0}')]//ancestor::div[@class='dropdown']//a[@data-bs-toggle='dropdown']";
         private string DeleteButtonXpath = "{0}/following-sibling::div//button[@class='Wtd_FE']";
+        private string ProjectNames = "//a[@class='defect-title']";
 
-        private By CreateButton = By.XPath("//button[@id='createButton']");
-        private By ProjectNames = By.XPath("//a[@class='defect-title']");
-        private By SearchInput = By.XPath("//input[contains(@class,'search-input')]");
-        private By DropdownButton;
-        private By DeleteButton;
+        private Button CreateButton = new("//button[@id='createButton']");
+        private TextField SearchInput = new("//input[contains(@class,'search-input')]");
+        private DropDown ProjectDropdown;
 
         public ProjectsPage() : base() { }
 
@@ -27,9 +27,21 @@ namespace BusinessObjects.UI.PageObjects
 
         public ProjectPage CreateNewProject(NewProjectDataModel dataModel)
         {
-            driver.FindElement(CreateButton).Click();
+            CreateButton.Click();
             CreateNewProjectModal.FillNewProjectData(dataModel);
             return new ProjectPage(dataModel.Code);
+        }
+
+        public void AssertProjectExistence(string code, bool isExisting)
+        {
+            this.SearchForProject(code);
+            var elements = driver.FindElements(By.XPath(ProjectNames));
+            Assert.That(elements.Count > 0, Is.EqualTo(isExisting));
+        }
+
+        public void SearchForProject(string code)
+        {
+            SearchInput.SendKeys(code);
         }
 
         public ProjectsPage DeleteProject(string projectCode)
@@ -37,11 +49,8 @@ namespace BusinessObjects.UI.PageObjects
             DropdownButtonXpath = string.Format(DropdownButtonXpath, projectCode);
             DeleteButtonXpath = string.Format(DeleteButtonXpath, DropdownButtonXpath);
 
-            DropdownButton = By.XPath(DropdownButtonXpath);
-            DeleteButton = By.XPath(DeleteButtonXpath);
-
-            driver.FindElement(DropdownButton).Click();
-            driver.FindElement(DeleteButton).Click();
+            ProjectDropdown = new(DropdownButtonXpath);
+            ProjectDropdown.SelectOption(DeleteButtonXpath);
 
             DeleteProjectModal.ConfirmDelete();
 

@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace Core.BaseObjects.UI
 {
-    public abstract class BasePage : BaseElement
+    public abstract class BasePage : BaseObject
     {
         protected string url = AppConfiguration.Browser.StartUrl;
 

@@ -1,6 +1,6 @@
 ﻿using Bogus;
 
-namespace BusinessObjects.DataModels
+namespace BusinessObjects.DataModels.UI
 {
     public static class NewProjectDataModelBuilder
     {
