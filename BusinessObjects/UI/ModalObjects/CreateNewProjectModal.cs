@@ -1,10 +1,9 @@
 ﻿using OpenQA.Selenium;
-using BusinessObjects.ElementsObjects;
-using Core.BaseObjects;
 using BusinessObjects.DataModels;
-using BusinessObjects.RadioButtonObjects;
+using BusinessObjects.UI.RadioButtonObjects;
+using Core.BaseObjects.UI;
 
-namespace BusinessObjects.ModalObjects
+namespace BusinessObjects.UI.ModalObjects
 {
     public class CreateNewProjectModal : BaseElement
     {

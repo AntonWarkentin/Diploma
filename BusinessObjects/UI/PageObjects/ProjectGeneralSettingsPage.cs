@@ -1,9 +1,9 @@
 ﻿using BusinessObjects.DataModels;
-using Core.BaseObjects;
+using Core.BaseObjects.UI;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace BusinessObjects.PageObjects
+namespace BusinessObjects.UI.PageObjects
 {
     public class ProjectGeneralSettingsPage : BasePage
     {

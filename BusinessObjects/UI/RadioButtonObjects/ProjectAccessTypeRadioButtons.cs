@@ -1,9 +1,8 @@
-﻿using BusinessObjects.ElementsObjects;
-using Core.BaseObjects;
+﻿using Core.BaseObjects.UI;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace BusinessObjects.RadioButtonObjects
+namespace BusinessObjects.UI.RadioButtonObjects
 {
     public class ProjectAccessTypeRadioButtons : BaseRadioButtonsField<ProjectAccessOptions>
     {

@@ -1,13 +1,15 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Core.Configuration.Models;
+using Microsoft.Extensions.Configuration;
 
-namespace Core.Configuration
+namespace Core.Configuration.Logic
 {
     public class AppConfiguration
     {
-        public static BrowserConfiguration Browser => BindConfiguration<BrowserConfiguration>();
-        public static UserConfiguration User => BindConfiguration<UserConfiguration>();
-
         private static IConfigurationRoot configurationRoot;
+
+        public static BrowserConfiguration Browser => BindConfiguration<BrowserConfiguration>();
+        public static ApiConfiguration Api => BindConfiguration<ApiConfiguration>();
+        public static UserConfiguration User => BindConfiguration<UserConfiguration>();
 
         static AppConfiguration()
         {

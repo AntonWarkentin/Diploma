@@ -1,8 +1,8 @@
-﻿using Core.BaseObjects;
-using Core.Configuration;
+﻿using Core.BaseObjects.UI;
+using Core.Configuration.Logic;
 using OpenQA.Selenium;
 
-namespace BusinessObjects.PageObjects
+namespace BusinessObjects.UI.PageObjects
 {
     public class LoginPage : BasePage
     {

@@ -1,4 +1,4 @@
-﻿namespace Core.BaseObjects
+﻿namespace Core.BaseObjects.UI
 {
     public abstract class BaseRadioButtonsField<T> : BaseElement where T : Enum
     {

@@ -1,4 +1,6 @@
-﻿namespace Core.Configuration
+﻿using Core.Configuration.Logic;
+
+namespace Core.Configuration.Models
 {
     public class UserConfiguration : IConfiguration
     {

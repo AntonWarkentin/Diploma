@@ -1,4 +1,4 @@
-﻿namespace Core.Configuration
+﻿namespace Core.Configuration.Logic
 {
     internal interface IConfiguration
     {

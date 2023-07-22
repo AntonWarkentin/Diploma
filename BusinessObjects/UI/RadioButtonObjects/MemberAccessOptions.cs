@@ -1,4 +1,4 @@
-﻿namespace BusinessObjects.ElementsObjects
+﻿namespace BusinessObjects.UI.RadioButtonObjects
 {
     public enum MemberAccessOptions
     {

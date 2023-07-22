@@ -1,7 +1,7 @@
-﻿using Core.BaseObjects;
+﻿using Core.BaseObjects.UI;
 using OpenQA.Selenium;
 
-namespace BusinessObjects.PageObjects
+namespace BusinessObjects.UI.PageObjects
 {
     public class ProjectPage : BasePage
     {

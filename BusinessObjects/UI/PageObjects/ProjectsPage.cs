@@ -1,10 +1,10 @@
 ﻿using Bogus;
 using BusinessObjects.DataModels;
-using BusinessObjects.ModalObjects;
-using Core.BaseObjects;
+using BusinessObjects.UI.ModalObjects;
+using Core.BaseObjects.UI;
 using OpenQA.Selenium;
 
-namespace BusinessObjects.PageObjects
+namespace BusinessObjects.UI.PageObjects
 {
     public class ProjectsPage : BasePage
     {

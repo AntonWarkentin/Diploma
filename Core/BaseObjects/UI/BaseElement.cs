@@ -1,7 +1,7 @@
 ﻿using Core.SeleniumObjects;
 using OpenQA.Selenium;
 
-namespace Core.BaseObjects
+namespace Core.BaseObjects.UI
 {
     public abstract class BaseElement
     {

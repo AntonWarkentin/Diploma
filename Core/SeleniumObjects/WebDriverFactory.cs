@@ -1,4 +1,4 @@
-﻿using Core.Configuration;
+﻿using Core.Configuration.Logic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 

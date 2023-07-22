@@ -1,7 +1,7 @@
-﻿using Core.Configuration;
+﻿using Core.Configuration.Logic;
 using OpenQA.Selenium;
 
-namespace Core.BaseObjects
+namespace Core.BaseObjects.UI
 {
     public abstract class BasePage : BaseElement
     {

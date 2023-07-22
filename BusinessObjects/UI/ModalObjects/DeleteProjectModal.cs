@@ -1,7 +1,7 @@
-﻿using Core.BaseObjects;
+﻿using Core.BaseObjects.UI;
 using OpenQA.Selenium;
 
-namespace BusinessObjects.ModalObjects
+namespace BusinessObjects.UI.ModalObjects
 {
     internal class DeleteProjectModal : BaseElement
     {
