@@ -13,12 +13,12 @@ namespace BusinessObjects.PageObjects
         private By ProjectCode = By.XPath("//input[@id='project-code']");
         private By Description = By.XPath("//textarea[@id='description-area']");
 
-        public override ProjectGeneralSettingsPage OpenPage() => (ProjectGeneralSettingsPage)base.OpenPage();
-
         public ProjectGeneralSettingsPage(string projectCode) : base()
         {
             url = string.Format(url, projectCode);
         }
+
+        public override ProjectGeneralSettingsPage OpenPage() => (ProjectGeneralSettingsPage)base.OpenPage();
 
         public void CheckOutProjectSettings(NewProjectDataModel dataExpected)
         {

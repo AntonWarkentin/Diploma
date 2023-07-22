@@ -1,4 +1,4 @@
-﻿namespace Core
+﻿namespace Core.Configuration
 {
     public class UserConfiguration : IConfiguration
     {

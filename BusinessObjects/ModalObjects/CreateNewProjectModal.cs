@@ -1,23 +1,20 @@
 ﻿using OpenQA.Selenium;
-using Bogus;
 using BusinessObjects.ElementsObjects;
-using BusinessObjects.PageObjects;
 using Core.BaseObjects;
-using Bogus.DataSets;
 using BusinessObjects.DataModels;
+using BusinessObjects.RadioButtonObjects;
 
 namespace BusinessObjects.ModalObjects
 {
     public class CreateNewProjectModal : BaseElement
     {
+        private ProjectAccessTypeRadioButtons projectAccess = new();
+        private MemberAccessTypeRadioButtons memberAccess = new();
+
         private By ProjectNameInput = By.XPath("//input[@id='project-name']");
         private By ProjectCodeInput = By.XPath("//input[@id='project-code']");
         private By ProjectDescriptionArea = By.XPath("//textarea[@id='description-area']");
-
         private By SubmitButton = By.XPath("//button[@type='submit']");
-
-        private ProjectAccessTypeRadioButtons projectAccess = new();
-        private MemberAccessTypeRadioButtons memberAccess = new();
 
         public CreateNewProjectModal() : base() { }
 

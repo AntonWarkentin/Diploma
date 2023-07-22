@@ -1,10 +1,11 @@
-﻿using Core.BaseObjects;
+﻿using BusinessObjects.ElementsObjects;
+using Core.BaseObjects;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace BusinessObjects.ElementsObjects
+namespace BusinessObjects.RadioButtonObjects
 {
-    public partial class MemberAccessTypeRadioButtons : BaseRadioButtonsField
+    public partial class MemberAccessTypeRadioButtons : BaseRadioButtonsField<MemberAccessOptions>
     {
         private Dictionary<MemberAccessOptions, By> radioButtons = new()
         {
@@ -16,14 +17,12 @@ namespace BusinessObjects.ElementsObjects
         private By groupToChooseInput = By.XPath("//input[@aria-autocomplete='list']");
         private By groupToChooseOptions = By.XPath("//div[@data-popper-placement='bottom-start']");
 
-        public override void CheckOneOption<MemberAccessOptions>(MemberAccessOptions memberAccessOption)
+        public override void CheckOneOption(MemberAccessOptions memberAccessOption)
         {
-            var optionToCheck = (ElementsObjects.MemberAccessOptions)(object)memberAccessOption;
+            driver.FindElement(radioButtons[memberAccessOption]).Click();
+            Assert.IsTrue(driver.FindElement(radioButtons[memberAccessOption]).Selected);
 
-            driver.FindElement(radioButtons[optionToCheck]).Click();
-            Assert.IsTrue(driver.FindElement(radioButtons[optionToCheck]).Selected);
-
-            if (optionToCheck == ElementsObjects.MemberAccessOptions.AddMembersFromGroupRadioButton)
+            if (memberAccessOption == MemberAccessOptions.AddMembersFromGroupRadioButton)
             {
                 driver.FindElement(groupToChooseInput).Click();
                 driver.FindElement(groupToChooseOptions).Click();

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace Core
+namespace Core.Configuration
 {
     public class AppConfiguration
     {

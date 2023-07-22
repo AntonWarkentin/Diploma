@@ -1,6 +1,4 @@
-﻿using BusinessObjects.DataModels;
-using Core.BaseObjects;
-using NUnit.Framework;
+﻿using Core.BaseObjects;
 using OpenQA.Selenium;
 
 namespace BusinessObjects.PageObjects
@@ -14,13 +12,13 @@ namespace BusinessObjects.PageObjects
         private By ProjectCode = By.XPath("//div[@id='application-content']//h1");
         private By Settings = By.XPath("//a[@title='Settings']");
 
-        public override ProjectPage OpenPage() => (ProjectPage)base.OpenPage();
-
         public ProjectPage(string projectCode) : base()
         {
             code = projectCode;
             url = string.Format(url, projectCode);
         }
+
+        public override ProjectPage OpenPage() => (ProjectPage)base.OpenPage();
 
         public ProjectGeneralSettingsPage OpenSettings()
         {

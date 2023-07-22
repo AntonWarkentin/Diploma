@@ -1,7 +1,8 @@
-﻿using OpenQA.Selenium;
+﻿using Core.Configuration;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace Core
+namespace Core.SeleniumObjects
 {
     public class WebDriverFactory
     {

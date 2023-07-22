@@ -1,9 +1,8 @@
 ﻿using Bogus;
-using BusinessObjects.DataModels;
 
-namespace Tests
+namespace BusinessObjects.DataModels
 {
-    public static class NewProjectDataModelFiller
+    public static class NewProjectDataModelBuilder
     {
         public static NewProjectDataModel CreateProjectWithFakedValues()
         {

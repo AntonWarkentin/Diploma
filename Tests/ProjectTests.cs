@@ -1,6 +1,6 @@
-﻿using Bogus;
+﻿using BusinessObjects.DataModels;
 using BusinessObjects.PageObjects;
-using Core;
+using Core.SeleniumObjects;
 
 namespace Tests
 {
@@ -9,7 +9,7 @@ namespace Tests
         [Test]
         public void CreateNewProject()
         {
-            var testData = NewProjectDataModelFiller.CreateProjectWithFakedValues();
+            var testData = NewProjectDataModelBuilder.CreateProjectWithFakedValues();
 
             new LoginPage().
                 OpenPage().

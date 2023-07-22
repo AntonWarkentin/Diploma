@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using RestSharp;
 
-namespace Core
+namespace Core.Helpers
 {
     public static class JsonHelper
     {
@@ -10,7 +10,7 @@ namespace Core
         {
             return JsonConvert.DeserializeObject<JObject>(response.Content).SelectToken(tokenPath);
         }
-        
+
         public static IEnumerable<JToken> DeserializeJsonAndGetTokens(this RestResponse response, string tokenPath)
         {
             return JsonConvert.DeserializeObject<JObject>(response.Content).SelectTokens(tokenPath);

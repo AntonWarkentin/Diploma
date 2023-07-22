@@ -1,6 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using Core.Configuration;
+using OpenQA.Selenium;
 
-namespace Core
+namespace Core.SeleniumObjects
 {
     public class Browser
     {
@@ -25,7 +26,7 @@ namespace Core
         private Browser()
         {
             driver = WebDriverFactory.CreateChromeDriver();
-            
+
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(AppConfiguration.Browser.TimeOut);
             driver.Manage().Window.Maximize();
         }

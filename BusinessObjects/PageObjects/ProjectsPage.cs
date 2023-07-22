@@ -8,18 +8,18 @@ namespace BusinessObjects.PageObjects
 {
     public class ProjectsPage : BasePage
     {
-        string url = "https://app.qase.io/projects";
-
-        private By CreateButton = By.XPath("//button[@id='createButton']");
-        private By ProjectNames = By.XPath("//a[@class='defect-title']");
-        private string DropdownButtonXpath = "//div[@class='dropdown-item']//a[contains(@href,'{0}')]//ancestor::div[@class='dropdown']//a[@data-bs-toggle='dropdown']";
-        private By DropdownButton;
-        private string DeleteButtonXpath = "{0}/following-sibling::div//button[@class='Wtd_FE']";
-        private By DeleteButton;
-
         private CreateNewProjectModal CreateNewProjectModal => new CreateNewProjectModal();
         private DeleteProjectModal DeleteProjectModal => new DeleteProjectModal();
 
+        string url = "https://app.qase.io/projects";
+        private string DropdownButtonXpath = "//div[@class='dropdown-item']//a[contains(@href,'{0}')]//ancestor::div[@class='dropdown']//a[@data-bs-toggle='dropdown']";
+        private string DeleteButtonXpath = "{0}/following-sibling::div//button[@class='Wtd_FE']";
+
+        private By CreateButton = By.XPath("//button[@id='createButton']");
+        private By ProjectNames = By.XPath("//a[@class='defect-title']");
+        private By SearchInput = By.XPath("//input[contains(@class,'search-input')]");
+        private By DropdownButton;
+        private By DeleteButton;
 
         public ProjectsPage() : base() { }
 

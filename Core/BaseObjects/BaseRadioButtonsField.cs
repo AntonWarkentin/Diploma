@@ -1,10 +1,7 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-
-namespace Core.BaseObjects
+﻿namespace Core.BaseObjects
 {
-    public abstract class BaseRadioButtonsField : BaseElement
+    public abstract class BaseRadioButtonsField<T> : BaseElement where T : Enum
     {
-        public abstract void CheckOneOption<T>(T optionToCheck) where T : Enum;
+        public abstract void CheckOneOption(T optionToCheck);
     }
 }

@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Core.Configuration;
+using OpenQA.Selenium;
 
 namespace Core.BaseObjects
 {

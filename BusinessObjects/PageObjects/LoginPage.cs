@@ -1,5 +1,5 @@
-﻿using Core;
-using Core.BaseObjects;
+﻿using Core.BaseObjects;
+using Core.Configuration;
 using OpenQA.Selenium;
 
 namespace BusinessObjects.PageObjects
