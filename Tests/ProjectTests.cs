@@ -11,7 +11,7 @@ namespace Tests
         [Test]
         public void CreateNewProject()
         {
-            var testData = NewProjectDataModelBuilder.CreateProjectWithFakedValues();
+            var testData = ProjectDataModelBuilder.NewProjectModel();
 
             new LoginPage().
                 OpenPage().
@@ -32,6 +32,20 @@ namespace Tests
                 Login().
                 DeleteProject(codeToDelete).
                 AssertProjectExistence(codeToDelete, false);
+        }
+
+        [Test]
+        public void EditProjectTest()
+        {
+            var testData = ProjectDataModelBuilder.UpdateProjectModel();
+            var response = new ProjectApiService().GetAllProjects();
+            var codeToEdit = response.GetLastEntry("result.entities[*].code").ToString();
+
+            new LoginPage().
+                OpenPage().
+                Login().
+                OpenProjectSettings(codeToEdit).
+                UpdateSettings(testData);
         }
 
         [TearDown]

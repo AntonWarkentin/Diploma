@@ -16,7 +16,7 @@ namespace BusinessObjects.UI.ModalObjects
 
         public CreateNewProjectModal() : base() { }
 
-        public void FillNewProjectData(NewProjectDataModel dataModel)
+        public void FillNewProjectData(ProjectDataModel dataModel)
         {
             ProjectNameInput.SendKeys(dataModel.Name);
             ProjectCodeInput.SendKeys(dataModel.Code);

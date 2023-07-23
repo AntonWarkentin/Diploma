@@ -13,9 +13,11 @@ namespace BusinessObjects.UI.PageObjects
         private CreateNewProjectModal CreateNewProjectModal => new ();
         private DeleteProjectModal DeleteProjectModal => new ();
 
-        private string DropdownButtonXpath = "//div[@class='dropdown-item']//a[contains(@href,'{0}')]//ancestor::div[@class='dropdown']//a[@data-bs-toggle='dropdown']";
+        private string DropdownButtonXpath = "//a[@href='/project/{0}/settings/general']/ancestor::div[@class='dropdown']//a[@data-bs-toggle='dropdown']";
         private string DeleteButtonXpath = "{0}/following-sibling::div//button[@class='Wtd_FE']";
-        private string ProjectNames = "//a[@class='defect-title']";
+        private string OpenSettingsButtonXpath = "//a[@href='/project/{0}/settings/general']";
+
+        private string ProjectTitleXpath = "//a[@class='defect-title'][@href='/project/{0}']";
 
         private Button CreateButton = new("//button[@id='createButton']");
         private TextField SearchInput = new("//input[contains(@class,'search-input')]");
@@ -25,23 +27,29 @@ namespace BusinessObjects.UI.PageObjects
 
         public override ProjectsPage OpenPage() => (ProjectsPage)base.OpenPage();
 
-        public ProjectPage CreateNewProject(NewProjectDataModel dataModel)
+        public void SearchForProject(string projectCode) => SearchInput.SendKeys(projectCode);
+
+        public ProjectPage CreateNewProject(ProjectDataModel dataModel)
         {
             CreateButton.Click();
             CreateNewProjectModal.FillNewProjectData(dataModel);
             return new ProjectPage(dataModel.Code);
         }
 
-        public void AssertProjectExistence(string code, bool isExisting)
+        public void AssertProjectExistence(string projectCode, bool isExisting)
         {
-            this.SearchForProject(code);
-            var elements = driver.FindElements(By.XPath(ProjectNames));
+            ProjectTitleXpath = string.Format(ProjectTitleXpath, projectCode);
+            this.SearchForProject(projectCode);
+            var elements = driver.FindElements(By.XPath(ProjectTitleXpath));
             Assert.That(elements.Count > 0, Is.EqualTo(isExisting));
         }
 
-        public void SearchForProject(string code)
+        public ProjectGeneralSettingsPage OpenProjectSettings(string projectCode)
         {
-            SearchInput.SendKeys(code);
+            this.SearchForProject(projectCode);
+            ProjectDropdown = new(DropdownButtonXpath);
+            ProjectDropdown.SelectOption(OpenSettingsButtonXpath);
+            return new ProjectGeneralSettingsPage(projectCode);
         }
 
         public ProjectsPage DeleteProject(string projectCode)
