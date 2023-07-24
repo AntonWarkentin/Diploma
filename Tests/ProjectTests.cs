@@ -20,7 +20,7 @@ namespace Tests
                 OpenSettings().
                 CheckOutProjectSettings(testData);
         }
-
+        
         [Test]
         public void DeleteProject()
         {
@@ -47,6 +47,7 @@ namespace Tests
                 OpenProjectSettings(codeToEdit).
                 UpdateSettings(testData);
         }
+
 
         [TearDown]
         public void TearDown()
