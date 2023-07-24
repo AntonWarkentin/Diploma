@@ -6,9 +6,9 @@ namespace BusinessObjects.UI.PageObjects
 {
     public class ProjectGeneralSettingsPage : BasePage
     {
-        string url = "https://app.qase.io/project/{0}/settings/general";
+        const string updateSettingsMessage = "Project settings were successfully updated!";
 
-        string updateSettingsMessage = "Project settings were successfully updated!";
+        string url = "https://app.qase.io/project/{0}/settings/general";
 
         private TextField ProjectNameField = new("//input[@id='project-name']");
         private TextField ProjectCodeField = new("//input[@id='project-code']");

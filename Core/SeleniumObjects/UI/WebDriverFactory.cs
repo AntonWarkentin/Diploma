@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace Core.SeleniumObjects
+namespace Core.SeleniumObjects.UI
 {
     public class WebDriverFactory
     {

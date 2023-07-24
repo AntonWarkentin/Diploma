@@ -12,19 +12,25 @@ namespace BusinessObjects.UI.PageObjects
         string url = "https://app.qase.io/projects";
         private string ProjectTitleXpath = "//a[@class='defect-title'][@href='/project/{0}']";
 
-        private CreateNewProjectModal CreateNewProjectModal => new ();
+        private CreateProjectModal CreateNewProjectModal => new ();
         private DeleteProjectModal DeleteProjectModal => new ();
 
         private Button CreateButton = new("//button[@id='createButton']");
         private TextField SearchInput = new("//input[contains(@class,'search-input')]");
         private ProjectsDropDown ProjectsDropDown;
+        private Button ProjectTitle;
 
 
         public ProjectsPage() : base() { }
 
         public override ProjectsPage OpenPage() => (ProjectsPage)base.OpenPage();
 
-        public void SearchForProject(string projectCode) => SearchInput.SendKeys(projectCode);
+        public Button SearchForProject(string projectCode)
+        {
+            ProjectTitleXpath = string.Format(ProjectTitleXpath, projectCode);
+            SearchInput.SendKeys(projectCode);
+            return new(ProjectTitleXpath);
+        }
 
         public ProjectPage CreateNewProject(ProjectDataModel dataModel)
         {
@@ -35,10 +41,10 @@ namespace BusinessObjects.UI.PageObjects
 
         public void AssertProjectExistence(string projectCode, bool isExisting)
         {
-            ProjectTitleXpath = string.Format(ProjectTitleXpath, projectCode);
-            this.SearchForProject(projectCode);
-            var elements = driver.FindElements(By.XPath(ProjectTitleXpath));
-            Assert.That(elements.Count > 0, Is.EqualTo(isExisting));
+            ProjectTitle = this.SearchForProject(projectCode);
+
+            var foundElements = ProjectTitle.GetElements();
+            Assert.That(foundElements.Count > 0, Is.EqualTo(isExisting));
         }
 
         public ProjectGeneralSettingsPage OpenProjectSettings(string projectCode)
@@ -49,6 +55,14 @@ namespace BusinessObjects.UI.PageObjects
             ProjectsDropDown.SelectOption(ProjectsDropDown.SettingsButton);
 
             return new ProjectGeneralSettingsPage(projectCode);
+        }
+        
+        public ProjectPage OpenProject(string projectCode)
+        {
+            ProjectTitle = this.SearchForProject(projectCode);
+
+            ProjectTitle.Click();
+            return new ProjectPage(projectCode);
         }
 
         public ProjectsPage DeleteProject(string projectCode)

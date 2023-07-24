@@ -2,7 +2,7 @@
 using BusinessObjects.DataModels.UI;
 using BusinessObjects.UI.PageObjects;
 using Core.Helpers;
-using Core.SeleniumObjects;
+using Core.SeleniumObjects.UI;
 
 namespace Tests
 {
@@ -46,6 +46,21 @@ namespace Tests
                 Login().
                 OpenProjectSettings(codeToEdit).
                 UpdateSettings(testData);
+        }
+
+        [Test]
+        public void CreateNewSuite()
+        {
+            var testData = SuiteDataModelBuilder.NewSuiteModel();
+            var response = new ProjectApiService().GetAllProjects();
+            var projectCode = response.GetLastEntry("result.entities[*].code").ToString();
+
+            new LoginPage().
+                OpenPage().
+                Login().
+                OpenProject(projectCode).
+                CreateSuite(testData).
+                AssertSuiteExistence(testData.Name, true);
         }
 
 

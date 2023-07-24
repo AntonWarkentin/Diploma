@@ -1,7 +1,7 @@
 ﻿using Core.Configuration.Logic;
 using OpenQA.Selenium;
 
-namespace Core.SeleniumObjects
+namespace Core.SeleniumObjects.UI
 {
     public class Browser
     {

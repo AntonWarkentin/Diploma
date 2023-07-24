@@ -10,7 +10,7 @@ namespace Core.BaseObjects.UI
 
         public void SelectOption(Button optionButton)
         {
-            DropDownButton.GetElement().Click();
+            DropDownButton.Click();
             optionButton.Click();
         }
     }

@@ -2,7 +2,7 @@
 using Core.Configuration.Models;
 using Newtonsoft.Json.Linq;
 
-namespace Core.BaseObjects.API
+namespace Core.SeleniumObjects.API
 {
     public class BaseApiService
     {

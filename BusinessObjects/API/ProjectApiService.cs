@@ -1,5 +1,5 @@
 ﻿using BusinessObjects.DataModels.API;
-using Core.BaseObjects.API;
+using Core.SeleniumObjects.API;
 using Newtonsoft.Json;
 using RestSharp;
 
