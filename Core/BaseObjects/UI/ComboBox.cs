@@ -13,10 +13,14 @@
             InputTextField = new (xpath + "//input");
         }
 
+        public ComboBox(string xpath, string valueToInsert) : base(xpath, valueToInsert)
+        {
+            InputTextField = new (xpath + "//input");
+        }
+
         public void ClickOption(string optionName)
         {
-            optionXpath = string.Format(optionXpath, optionName);
-            OptionButton = new(optionXpath);
+            OptionButton = new(optionXpath, optionName);
 
             base.Click();
             InputTextField.SendKeys(optionName);

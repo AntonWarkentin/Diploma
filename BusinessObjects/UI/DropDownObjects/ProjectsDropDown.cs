@@ -16,13 +16,10 @@ namespace BusinessObjects.UI.DropDownObjects
         public ProjectsDropDown(string projectCode) : base()
         {
             BasePath = string.Format(BasePath, projectCode);
-            DropdownButtonXpath = string.Format(DropdownButtonXpath, BasePath);
-            OpenSettingsButtonXpath = string.Format(OpenSettingsButtonXpath, BasePath);
-            DeleteButtonXpath = string.Format(DeleteButtonXpath, BasePath);
 
-            DropDownButton = new Button(DropdownButtonXpath);
-            SettingsButton = new Button(OpenSettingsButtonXpath);
-            DeleteButton = new Button(DeleteButtonXpath);
+            DropDownButton = new Button(DropdownButtonXpath, BasePath);
+            SettingsButton = new Button(OpenSettingsButtonXpath, BasePath);
+            DeleteButton = new Button(DeleteButtonXpath, BasePath);
         }
     }
 }

@@ -77,6 +77,19 @@ namespace Tests
                 CreateTestCase(testData);
         }
 
+        [Test]
+        public void DeleteSuite()
+        {
+            var response = new ProjectApiService().GetAllProjects();
+            var projectCode = response.GetLastEntry("result.entities[*].code").ToString();
+
+            new LoginPage().
+                OpenPage().
+                Login().
+                OpenProject(projectCode).
+                DeleteSuite("");
+        }
+
         [TearDown]
         public void TearDown()
         {

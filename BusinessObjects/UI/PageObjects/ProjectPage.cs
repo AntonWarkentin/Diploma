@@ -15,14 +15,17 @@ namespace BusinessObjects.UI.PageObjects
         string url = "https://app.qase.io/project/{0}";
         string projectCode;
         string SuiteNameButtonXpath = "//a[@title='{0}']";
+        string DeleteSuiteButtonXpath = "//span[text()='{0}']/following::button//i[contains(@class,'trash')]";
 
         private CreateSuiteModal CreateSuiteModal => new();
+        private DeleteModal DeleteModal => new();
 
         private Button SettingsButton = new("//a[@title='Settings']");
         private Button CreateSuiteButton = new("//a[@id='create-suite-button']");
         private Button CreateCaseButton = new("//a[@id='create-case-button']");
         private BaseElement Alert = new("//div[@role='alert']/span/span");
         private Button SuiteNameButton;
+        private Button DeleteSuiteButton;
 
 
         public ProjectPage(string projectCode) : base()
@@ -57,11 +60,22 @@ namespace BusinessObjects.UI.PageObjects
 
         public void AssertSuiteExistence(string suiteName, bool isExisting)
         {
-            SuiteNameButtonXpath = string.Format(SuiteNameButtonXpath, suiteName);
-            SuiteNameButton = new(SuiteNameButtonXpath);
+            SuiteNameButton = new(SuiteNameButtonXpath, suiteName);
 
             var foundElements = SuiteNameButton.GetElements();
             Assert.That(foundElements.Count > 0, Is.EqualTo(isExisting));
+        }
+
+        public void DeleteSuite(string suiteName)
+        {
+            SuiteNameButton = new(SuiteNameButtonXpath, suiteName);
+            DeleteSuiteButton = new(DeleteSuiteButtonXpath, suiteName);
+
+            SuiteNameButton.Click();
+            DeleteSuiteButton.Click();
+            DeleteModal.ConfirmDelete();
+
+            Assert.That(Alert.Text, Is.EqualTo(deleteSuiteMessage));
         }
     }
 }

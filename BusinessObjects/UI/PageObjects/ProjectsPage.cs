@@ -26,9 +26,8 @@ namespace BusinessObjects.UI.PageObjects
 
         public Button SearchForProject(string projectCode)
         {
-            ProjectTitleXpath = string.Format(ProjectTitleXpath, projectCode);
             SearchInput.SendKeys(projectCode);
-            return new(ProjectTitleXpath);
+            return new(ProjectTitleXpath, projectCode);
         }
 
         public ProjectPage CreateNewProject(ProjectDataModel dataModel)

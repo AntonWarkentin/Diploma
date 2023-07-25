@@ -19,6 +19,12 @@ namespace Core.BaseObjects.UI
             locator = By.XPath(xpath);
         }
 
+        public BaseElement(string xpath, string valueToInsert)
+        {
+            xpath = string.Format(xpath, valueToInsert);
+            locator = By.XPath(xpath);
+        }
+
         public string GetAttribute(string attributeName)
         {
             return this.GetElement().GetAttribute(attributeName);
