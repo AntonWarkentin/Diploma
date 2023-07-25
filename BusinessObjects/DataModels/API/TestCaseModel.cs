@@ -11,7 +11,25 @@ namespace BusinessObjects.DataModels.API
         public string Title { get; set; }
 
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
+        public string Status { get; set; }
+
         public string Description { get; set; }
+
+        public string SeverityStr { get; set; }
+
+        public string PriorityStr { get; set; }
+
+        [JsonProperty("behavior", NullValueHandling = NullValueHandling.Ignore)]
+        public string Behavior { get; set; }
+
+        public string IsFlakyStr { get; set; }
+
+        public string Type { get; set; }
+
+        public string AutomationStatus { get; set; }
+        
+        [JsonProperty("layer", NullValueHandling = NullValueHandling.Ignore)]
+        public string Layer { get; set; }
 
         [JsonProperty("preconditions", NullValueHandling = NullValueHandling.Ignore)]
         public string Preconditions { get; set; }

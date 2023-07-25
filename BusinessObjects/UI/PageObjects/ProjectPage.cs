@@ -1,4 +1,5 @@
-﻿using BusinessObjects.DataModels.UI;
+﻿using BusinessObjects.DataModels.API;
+using BusinessObjects.DataModels.UI;
 using BusinessObjects.UI.ModalObjects;
 using Core.BaseObjects.UI;
 using NUnit.Framework;
@@ -9,6 +10,7 @@ namespace BusinessObjects.UI.PageObjects
     {
         const string createSuiteMessage = "Suite was successfully created.";
         const string deleteSuiteMessage = "Suite was successfully deleted.";
+        const string createTestCaseMessage = "Test case was created successfully!";
 
         string url = "https://app.qase.io/project/{0}";
         string projectCode;
@@ -42,6 +44,14 @@ namespace BusinessObjects.UI.PageObjects
             CreateSuiteButton.Click();
             CreateSuiteModal.FillNewSuiteValues(suitData);
             Assert.That(Alert.Text, Is.EqualTo(createSuiteMessage));
+            return this;
+        }
+        
+        public ProjectPage CreateTestCase(TestCaseModel data)
+        {
+            CreateCaseButton.Click();
+            new CreateTestCasePage(projectCode).FillTestCaseData(data);
+            Assert.That(Alert.Text, Is.EqualTo(createTestCaseMessage));
             return this;
         }
 

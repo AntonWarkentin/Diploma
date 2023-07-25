@@ -63,6 +63,19 @@ namespace Tests
                 AssertSuiteExistence(testData.Name, true);
         }
 
+        [Test]
+        public void CreateTestCase()
+        {
+            var testData = TestCaseDataModelBuilder.NewTestCaseModel();
+            var response = new ProjectApiService().GetAllProjects();
+            var projectCode = response.GetLastEntry("result.entities[*].code").ToString();
+
+            new LoginPage().
+                OpenPage().
+                Login().
+                OpenProject(projectCode).
+                CreateTestCase(testData);
+        }
 
         [TearDown]
         public void TearDown()

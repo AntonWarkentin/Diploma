@@ -3,7 +3,6 @@ using BusinessObjects.UI.DropDownObjects;
 using BusinessObjects.UI.ModalObjects;
 using Core.BaseObjects.UI;
 using NUnit.Framework;
-using OpenQA.Selenium;
 
 namespace BusinessObjects.UI.PageObjects
 {
