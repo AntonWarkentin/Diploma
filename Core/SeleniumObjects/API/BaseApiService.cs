@@ -1,6 +1,4 @@
 ﻿using Core.Configuration.Logic;
-using Core.Configuration.Models;
-using Newtonsoft.Json.Linq;
 
 namespace Core.SeleniumObjects.API
 {
@@ -12,6 +10,7 @@ namespace Core.SeleniumObjects.API
         public BaseApiService()
         {
             apiClient = new BaseApiClient(BaseUrl);
+            apiClient.AddToken();
         }
     }
 }

@@ -11,14 +11,13 @@ namespace BusinessObjects.API
         public string ProjectByCodeEndpoint = "/project/{code}";
         public string ProjectAccessEndpoint = "/project/{code}/access";
 
-        public ProjectApiService() : base()
-        {
-            apiClient.AddToken();
-        }
+        public ProjectApiService() : base() { }
 
         public RestResponse GetProjectByCode(string code)
         {
-            var request = new RestRequest(ProjectByCodeEndpoint).AddUrlSegment("code", code);
+            var request = new RestRequest(ProjectByCodeEndpoint).
+                            AddUrlSegment("code", code);
+
             return apiClient.Execute(request);
         }
 
@@ -37,14 +36,19 @@ namespace BusinessObjects.API
 
         public RestResponse DeleteProject(string code)
         {
-            var request = new RestRequest(ProjectByCodeEndpoint, Method.Delete).AddUrlSegment("code", code);
+            var request = new RestRequest(ProjectByCodeEndpoint, Method.Delete).
+                            AddUrlSegment("code", code);
+
             return apiClient.Execute(request);
         }
 
         public RestResponse GrantAccessToProject(string projectCode, MemberModel member)
         {
             var memberSerialized = JsonConvert.SerializeObject(member);
-            var request = new RestRequest(ProjectAccessEndpoint, Method.Post).AddUrlSegment("code", projectCode);
+
+            var request = new RestRequest(ProjectAccessEndpoint, Method.Post).
+                            AddUrlSegment("code", projectCode);
+
             request.AddBody(memberSerialized);
             return apiClient.Execute(request);
         }
@@ -52,7 +56,10 @@ namespace BusinessObjects.API
         public RestResponse RevokeAccessToProject(string projectCode, MemberModel member)
         {
             var memberSerialized = JsonConvert.SerializeObject(member);
-            var request = new RestRequest(ProjectAccessEndpoint, Method.Delete).AddUrlSegment("code", projectCode);
+
+            var request = new RestRequest(ProjectAccessEndpoint, Method.Delete).
+                            AddUrlSegment("code", projectCode);
+
             request.AddBody(memberSerialized);
             return apiClient.Execute(request);
         }

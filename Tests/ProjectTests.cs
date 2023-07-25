@@ -60,7 +60,7 @@ namespace Tests
                 Login().
                 OpenProject(projectCode).
                 CreateSuite(testData).
-                AssertSuiteExistence(testData.Name, true);
+                AssertSuiteExistence(testData.Title, true);
         }
 
         [Test]
@@ -80,14 +80,17 @@ namespace Tests
         [Test]
         public void DeleteSuite()
         {
+            var testData = SuiteDataModelBuilder.NewSuiteModel();
             var response = new ProjectApiService().GetAllProjects();
             var projectCode = response.GetLastEntry("result.entities[*].code").ToString();
+
+            new SuiteApiService().CreateSuite(projectCode, testData);
 
             new LoginPage().
                 OpenPage().
                 Login().
                 OpenProject(projectCode).
-                DeleteSuite("");
+                DeleteSuite(testData.Title);
         }
 
         [TearDown]

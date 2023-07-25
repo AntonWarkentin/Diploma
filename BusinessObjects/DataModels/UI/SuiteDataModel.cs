@@ -1,22 +1,29 @@
-﻿namespace BusinessObjects.DataModels.UI
+﻿using Newtonsoft.Json;
+
+namespace BusinessObjects.DataModels.UI
 {
     public class SuiteDataModel
     {
-        public string Name { get; set; }
+        [JsonProperty("title")]
+        public string Title { get; set; }
+
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
+
+        [JsonProperty("preconditions", NullValueHandling = NullValueHandling.Ignore)]
         public string Preconditions { get; set; }
 
         public override bool Equals(object? obj)
         {
             return obj is SuiteDataModel model &&
-                   Name == model.Name &&
+                   Title == model.Title &&
                    Description == model.Description &&
                    Preconditions == model.Preconditions;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Name, Description, Preconditions);
+            return HashCode.Combine(Title, Description, Preconditions);
         }
     }
 }

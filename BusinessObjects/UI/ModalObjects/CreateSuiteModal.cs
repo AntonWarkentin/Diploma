@@ -12,7 +12,7 @@ namespace BusinessObjects.UI.ModalObjects
 
         public void FillNewSuiteValues(SuiteDataModel data)
         {
-            SuiteNameTextField.SendKeys(data.Name);
+            SuiteNameTextField.SendKeys(data.Title);
             DescriptionTextField.SendKeys(data.Description);
             PreconditionsTextField.SendKeys(data.Preconditions);
 

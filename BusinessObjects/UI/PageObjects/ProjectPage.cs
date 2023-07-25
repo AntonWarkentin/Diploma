@@ -76,6 +76,7 @@ namespace BusinessObjects.UI.PageObjects
             DeleteModal.ConfirmDelete();
 
             Assert.That(Alert.Text, Is.EqualTo(deleteSuiteMessage));
+            SuiteNameButton.AssertElementExistence(false);
         }
     }
 }
