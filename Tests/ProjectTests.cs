@@ -59,8 +59,7 @@ namespace Tests
                 OpenPage().
                 Login().
                 OpenProject(projectCode).
-                CreateSuite(testData).
-                AssertSuiteExistence(testData.Title, true);
+                CreateSuite(testData);
         }
 
         [Test]
@@ -91,6 +90,22 @@ namespace Tests
                 Login().
                 OpenProject(projectCode).
                 DeleteSuite(testData.Title);
+        }
+        
+        [Test]
+        public void DeleteTestCase()
+        {
+            var testData = TestCaseDataModelBuilder.NewTestCaseModel();
+            var response = new ProjectApiService().GetAllProjects();
+            var projectCode = response.GetRandomEntry("result.entities[*].code").ToString();
+
+            var res = new TestCaseApiService().CreateTestCase(projectCode, testData);
+
+            new LoginPage().
+                OpenPage().
+                Login().
+                OpenProject(projectCode).
+                DeleteTestCase(testData.Title, testData.SuiteId);
         }
 
         [TearDown]

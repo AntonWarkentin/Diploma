@@ -9,10 +9,10 @@ namespace BusinessObjects.DataModels.API
 
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
-
-        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
+        
         public string Status { get; set; }
 
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
 
         public string SeverityStr { get; set; }
@@ -20,7 +20,9 @@ namespace BusinessObjects.DataModels.API
         public string PriorityStr { get; set; }
 
         [JsonProperty("behavior", NullValueHandling = NullValueHandling.Ignore)]
-        public string Behavior { get; set; }
+        public int Behavior { get; set; }
+
+        public string BehaviorStr { get; set; }
 
         public string IsFlakyStr { get; set; }
 
@@ -29,7 +31,9 @@ namespace BusinessObjects.DataModels.API
         public string AutomationStatus { get; set; }
         
         [JsonProperty("layer", NullValueHandling = NullValueHandling.Ignore)]
-        public string Layer { get; set; }
+        public int Layer { get; set; }
+
+        public string LayerStr { get; set; }
 
         [JsonProperty("preconditions", NullValueHandling = NullValueHandling.Ignore)]
         public string Preconditions { get; set; }

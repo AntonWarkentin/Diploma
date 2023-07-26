@@ -26,6 +26,12 @@ namespace BusinessObjects.UI.PageObjects
         private BaseElement Alert = new("//div[@role='alert']/span/span");
         private Button SuiteNameButton;
         private Button DeleteSuiteButton;
+        private Button TestCasesWithoutSuiteButton = new("//a[@title='Test cases without suite']");
+
+        private string TestCaseCheckBoxButtonXpath = "//div[text()='{0}']/preceding::input[@type='checkbox'][1]";
+        private Button TestCaseCheckBoxButton;
+
+        private Button CheckedTestCasesDeleteButton = new("//i[contains(@class, 'trash')]/ancestor::button[contains(@class,'secondary')]");
 
 
         public ProjectPage(string projectCode) : base()
@@ -42,12 +48,13 @@ namespace BusinessObjects.UI.PageObjects
             return new ProjectGeneralSettingsPage(projectCode);
         }
 
-        public ProjectPage CreateSuite(SuiteDataModel suitData)
+        public void CreateSuite(SuiteDataModel suitData)
         {
+            SuiteNameButton = new(SuiteNameButtonXpath, suitData.Title);
             CreateSuiteButton.Click();
             CreateSuiteModal.FillNewSuiteValues(suitData);
             Assert.That(Alert.Text, Is.EqualTo(createSuiteMessage));
-            return this;
+            SuiteNameButton.AssertElementExistence(true);
         }
         
         public ProjectPage CreateTestCase(TestCaseModel data)
@@ -56,14 +63,6 @@ namespace BusinessObjects.UI.PageObjects
             new CreateTestCasePage(projectCode).FillTestCaseData(data);
             Assert.That(Alert.Text, Is.EqualTo(createTestCaseMessage));
             return this;
-        }
-
-        public void AssertSuiteExistence(string suiteName, bool isExisting)
-        {
-            SuiteNameButton = new(SuiteNameButtonXpath, suiteName);
-
-            var foundElements = SuiteNameButton.GetElements();
-            Assert.That(foundElements.Count > 0, Is.EqualTo(isExisting));
         }
 
         public void DeleteSuite(string suiteName)
@@ -77,6 +76,19 @@ namespace BusinessObjects.UI.PageObjects
 
             Assert.That(Alert.Text, Is.EqualTo(deleteSuiteMessage));
             SuiteNameButton.AssertElementExistence(false);
+        }
+
+        public void DeleteTestCase(string title, long? suiteId)
+        {
+            TestCaseCheckBoxButton = new(TestCaseCheckBoxButtonXpath, title);
+
+            if (suiteId == null)
+            {
+                TestCasesWithoutSuiteButton.Click();
+            }
+
+            TestCaseCheckBoxButton.Click();
+            CheckedTestCasesDeleteButton.Click();
         }
     }
 }
