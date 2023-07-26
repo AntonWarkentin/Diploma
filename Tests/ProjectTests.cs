@@ -25,7 +25,7 @@ namespace Tests
         public void DeleteProject()
         {
             var response = new ProjectApiService().GetAllProjects();
-            var codeToDelete = response.GetLastEntry("result.entities[*].code").ToString();
+            var codeToDelete = response.GetRandomEntry("result.entities[*].code").ToString();
 
             new LoginPage().
                 OpenPage().
@@ -39,7 +39,7 @@ namespace Tests
         {
             var testData = ProjectDataModelBuilder.UpdateProjectModel();
             var response = new ProjectApiService().GetAllProjects();
-            var codeToEdit = response.GetLastEntry("result.entities[*].code").ToString();
+            var codeToEdit = response.GetRandomEntry("result.entities[*].code").ToString();
 
             new LoginPage().
                 OpenPage().
@@ -53,7 +53,7 @@ namespace Tests
         {
             var testData = SuiteDataModelBuilder.NewSuiteModel();
             var response = new ProjectApiService().GetAllProjects();
-            var projectCode = response.GetLastEntry("result.entities[*].code").ToString();
+            var projectCode = response.GetRandomEntry("result.entities[*].code").ToString();
 
             new LoginPage().
                 OpenPage().
@@ -68,7 +68,7 @@ namespace Tests
         {
             var testData = TestCaseDataModelBuilder.NewTestCaseModel();
             var response = new ProjectApiService().GetAllProjects();
-            var projectCode = response.GetLastEntry("result.entities[*].code").ToString();
+            var projectCode = response.GetRandomEntry("result.entities[*].code").ToString();
 
             new LoginPage().
                 OpenPage().
@@ -82,7 +82,7 @@ namespace Tests
         {
             var testData = SuiteDataModelBuilder.NewSuiteModel();
             var response = new ProjectApiService().GetAllProjects();
-            var projectCode = response.GetLastEntry("result.entities[*].code").ToString();
+            var projectCode = response.GetRandomEntry("result.entities[*].code").ToString();
 
             new SuiteApiService().CreateSuite(projectCode, testData);
 
