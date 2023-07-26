@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using RestSharp;
 
-namespace Core.BaseObjects.API
+namespace Core.SeleniumObjects.API
 {
     public class BaseApiClient
     {

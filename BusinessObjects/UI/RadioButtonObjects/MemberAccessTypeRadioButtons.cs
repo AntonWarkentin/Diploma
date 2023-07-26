@@ -1,4 +1,5 @@
-﻿using Core.BaseObjects.UI;
+﻿using BusinessObjects.UI.DropDownObjects;
+using Core.BaseObjects.UI;
 using NUnit.Framework;
 
 namespace BusinessObjects.UI.RadioButtonObjects
@@ -12,8 +13,7 @@ namespace BusinessObjects.UI.RadioButtonObjects
             {MemberAccessOptions.DontAddMembersRadioButton, new("//input[@value='none']") },
         };
 
-        private DropDown groupToChooseInput = new("//input[@aria-autocomplete='list']");
-        private string groupToChooseOption = "//div[@data-popper-placement='bottom-start']";
+        private GroupToChooseDropDown GroupToChooseDropDown = new();
 
         public override void CheckOneOption(MemberAccessOptions memberAccessOption)
         {
@@ -22,7 +22,7 @@ namespace BusinessObjects.UI.RadioButtonObjects
 
             if (memberAccessOption == MemberAccessOptions.AddMembersFromGroupRadioButton)
             {
-                groupToChooseInput.SelectOption(groupToChooseOption);
+                GroupToChooseDropDown.SelectOption(GroupToChooseDropDown.GroupToChooseOptionButton);
             }
         }
     }

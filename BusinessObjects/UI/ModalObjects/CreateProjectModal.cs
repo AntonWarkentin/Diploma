@@ -4,7 +4,7 @@ using Core.BaseObjects.UI;
 
 namespace BusinessObjects.UI.ModalObjects
 {
-    public class CreateNewProjectModal : BaseObject
+    public class CreateProjectModal : BaseObject
     {
         private ProjectAccessTypeRadioButtons projectAccess = new();
         private MemberAccessTypeRadioButtons memberAccess = new();
@@ -14,9 +14,9 @@ namespace BusinessObjects.UI.ModalObjects
         private TextField ProjectDescriptionArea = new("//textarea[@id='description-area']");
         private Button SubmitButton = new("//button[@type='submit']");
 
-        public CreateNewProjectModal() : base() { }
+        public CreateProjectModal() : base() { }
 
-        public void FillNewProjectData(NewProjectDataModel dataModel)
+        public void FillNewProjectData(ProjectDataModel dataModel)
         {
             ProjectNameInput.SendKeys(dataModel.Name);
             ProjectCodeInput.SendKeys(dataModel.Code);

@@ -1,13 +1,11 @@
-﻿using Core.BaseObjects.UI;
-
-namespace BusinessObjects.UI.ModalObjects
+﻿namespace BusinessObjects.UI.ModalObjects
 {
-    internal class DeleteProjectModal : BaseObject
+    internal class DeleteProjectModal : DeleteModal
     {
-        private Button DeleteConfirmButton = new("//span[text()='Delete project']/ancestor::button");
-        private Button DeleteCancelButton = new("//span[text()='Cancel']/ancestor::button");
-
-        public DeleteProjectModal() : base() { }
+        public DeleteProjectModal() : base()
+        {
+            DeleteConfirmButton = new("//span[text()='Delete project']/ancestor::button");
+        }
 
         public void ConfirmDelete() => DeleteConfirmButton.Click();
     }

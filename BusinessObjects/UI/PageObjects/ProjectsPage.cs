@@ -1,57 +1,74 @@
 ﻿using BusinessObjects.DataModels.UI;
+using BusinessObjects.UI.DropDownObjects;
 using BusinessObjects.UI.ModalObjects;
 using Core.BaseObjects.UI;
 using NUnit.Framework;
-using OpenQA.Selenium;
 
 namespace BusinessObjects.UI.PageObjects
 {
     public class ProjectsPage : BasePage
     {
         string url = "https://app.qase.io/projects";
+        private string ProjectTitleXpath = "//a[@class='defect-title'][@href='/project/{0}']";
 
-        private CreateNewProjectModal CreateNewProjectModal => new ();
+        private CreateProjectModal CreateNewProjectModal => new ();
         private DeleteProjectModal DeleteProjectModal => new ();
-
-        private string DropdownButtonXpath = "//div[@class='dropdown-item']//a[contains(@href,'{0}')]//ancestor::div[@class='dropdown']//a[@data-bs-toggle='dropdown']";
-        private string DeleteButtonXpath = "{0}/following-sibling::div//button[@class='Wtd_FE']";
-        private string ProjectNames = "//a[@class='defect-title']";
 
         private Button CreateButton = new("//button[@id='createButton']");
         private TextField SearchInput = new("//input[contains(@class,'search-input')]");
-        private DropDown ProjectDropdown;
+        private ProjectsDropDown ProjectsDropDown;
+        private Button ProjectTitle;
+
 
         public ProjectsPage() : base() { }
 
         public override ProjectsPage OpenPage() => (ProjectsPage)base.OpenPage();
 
-        public ProjectPage CreateNewProject(NewProjectDataModel dataModel)
+        public Button SearchForProject(string projectCode)
+        {
+            SearchInput.SendKeys(projectCode);
+            return new(ProjectTitleXpath, projectCode);
+        }
+
+        public ProjectPage CreateNewProject(ProjectDataModel dataModel)
         {
             CreateButton.Click();
             CreateNewProjectModal.FillNewProjectData(dataModel);
             return new ProjectPage(dataModel.Code);
         }
 
-        public void AssertProjectExistence(string code, bool isExisting)
+        public void AssertProjectExistence(string projectCode, bool isExisting)
         {
-            this.SearchForProject(code);
-            var elements = driver.FindElements(By.XPath(ProjectNames));
-            Assert.That(elements.Count > 0, Is.EqualTo(isExisting));
+            ProjectTitle = this.SearchForProject(projectCode);
+
+            var foundElements = ProjectTitle.GetElements();
+            Assert.That(foundElements.Count > 0, Is.EqualTo(isExisting));
         }
 
-        public void SearchForProject(string code)
+        public ProjectGeneralSettingsPage OpenProjectSettings(string projectCode)
         {
-            SearchInput.SendKeys(code);
+            this.SearchForProject(projectCode);
+
+            ProjectsDropDown = new(projectCode);
+            ProjectsDropDown.SelectOption(ProjectsDropDown.SettingsButton);
+
+            return new ProjectGeneralSettingsPage(projectCode);
+        }
+        
+        public ProjectPage OpenProject(string projectCode)
+        {
+            ProjectTitle = this.SearchForProject(projectCode);
+
+            ProjectTitle.Click();
+            return new ProjectPage(projectCode);
         }
 
         public ProjectsPage DeleteProject(string projectCode)
         {
-            DropdownButtonXpath = string.Format(DropdownButtonXpath, projectCode);
-            DeleteButtonXpath = string.Format(DeleteButtonXpath, DropdownButtonXpath);
+            this.SearchForProject(projectCode);
 
-            ProjectDropdown = new(DropdownButtonXpath);
-            ProjectDropdown.SelectOption(DeleteButtonXpath);
-
+            ProjectsDropDown = new(projectCode);
+            ProjectsDropDown.SelectOption(ProjectsDropDown.DeleteButton);
             DeleteProjectModal.ConfirmDelete();
 
             return this;

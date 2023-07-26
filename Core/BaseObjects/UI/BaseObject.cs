@@ -1,4 +1,4 @@
-﻿using Core.SeleniumObjects;
+﻿using Core.SeleniumObjects.UI;
 using OpenQA.Selenium;
 
 namespace Core.BaseObjects.UI

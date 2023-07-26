@@ -1,5 +1,4 @@
 ﻿using Core.Configuration.Logic;
-using OpenQA.Selenium;
 
 namespace Core.BaseObjects.UI
 {

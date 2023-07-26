@@ -1,6 +1,6 @@
 ﻿namespace BusinessObjects.DataModels.UI
 {
-    public class NewProjectDataModel
+    public class ProjectDataModel
     {
         public string Name { get; set; }
         public string Code { get; set; }
@@ -8,7 +8,7 @@
 
         public override bool Equals(object? obj)
         {
-            return obj is NewProjectDataModel model &&
+            return obj is ProjectDataModel model &&
                    Name == model.Name &&
                    Code == model.Code &&
                    Description == model.Description;
