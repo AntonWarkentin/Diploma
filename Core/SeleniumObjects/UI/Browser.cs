@@ -31,7 +31,7 @@ namespace Core.SeleniumObjects.UI
         public void CloseBrowser()
         {
             driver?.Dispose();
-            instance = null;
+            BrowserInstances.Value = null;
         }
 
         public void NavigateToUrl(string url)
