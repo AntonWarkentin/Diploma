@@ -7,9 +7,6 @@ namespace Core.BaseObjects.UI
     {
         protected IWebDriver driver => Browser.Instance.Driver;
 
-        public BaseObject()
-        {
-            Thread.Sleep(1000);
-        }
+        public BaseObject() { }
     }
 }

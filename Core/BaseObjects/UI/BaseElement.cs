@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System.Collections.ObjectModel;
 
 namespace Core.BaseObjects.UI
@@ -12,7 +14,13 @@ namespace Core.BaseObjects.UI
         public bool Selected { get => this.GetElement().Selected; }
 
 
-        public IWebElement GetElement() => driver.FindElement(locator);
+        public IWebElement GetElement()
+        {
+            WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0,0,20));
+            wait.Until(x => x.FindElement(locator));
+            return driver.FindElement(locator);
+        }
+
         public ReadOnlyCollection<IWebElement> GetElements() => driver.FindElements(locator);
 
         public BaseElement(string xpath)
@@ -24,6 +32,11 @@ namespace Core.BaseObjects.UI
         {
             xpath = string.Format(xpath, valueToInsert);
             locator = By.XPath(xpath);
+        }
+
+        public BaseElement(By by)
+        {
+            locator = by;
         }
 
         public string GetAttribute(string attributeName)
