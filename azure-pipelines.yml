@@ -9,6 +9,13 @@ trigger:
 pool:
   name: 'Pool'
 
+schedules:
+- cron: '0 0 29 * *'
+  displayName: Daily midnight build
+  branches:
+    include:
+    - develop
+
 variables:
   solution: '**/*.sln'
   buildPlatform: 'x86|x64|ARM'
