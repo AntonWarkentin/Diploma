@@ -64,7 +64,7 @@ namespace Core.Helpers
         public static JToken GetRandomEntry(this RestResponse response, string tokenPath)
         {
             var allTokens = response.DeserializeJsonAndGetTokens(tokenPath).ToList<JToken>();
-            var randomIndex = new Faker().Random.Number(allTokens.Count);
+            var randomIndex = new Faker().Random.Number(allTokens.Count - 1);
 
             return allTokens[randomIndex];
         }

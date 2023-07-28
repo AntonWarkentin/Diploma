@@ -1,7 +1,6 @@
 ﻿using BusinessObjects.API;
 using BusinessObjects.DataModels.UI;
 using BusinessObjects.UI.PageObjects;
-using Core.Helpers;
 using Core.SeleniumObjects.UI;
 
 namespace Tests
@@ -24,21 +23,19 @@ namespace Tests
         [Test]
         public void DeleteProject()
         {
-            var response = new ProjectApiService().GetAllProjects();
             var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
 
             new LoginPage().
                 OpenPage().
                 Login().
-                DeleteProject(projectCode).
-                AssertProjectExistence(projectCode, false);
+                DeleteProject(projectCode);
         }
 
         [Test]
         public void EditProjectTest()
         {
-            var testData = ProjectDataModelBuilder.UpdateProjectModel();
             var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
+            var testData = ProjectDataModelBuilder.UpdateProjectModel();
 
             new LoginPage().
                 OpenPage().
@@ -50,8 +47,8 @@ namespace Tests
         [Test]
         public void CreateNewSuite()
         {
-            var testData = SuiteDataModelBuilder.NewSuiteModel();
             var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
+            var testData = SuiteDataModelBuilder.NewSuiteModel();
 
             new LoginPage().
                 OpenPage().
@@ -63,8 +60,8 @@ namespace Tests
         [Test]
         public void CreateTestCase()
         {
-            var testData = TestCaseDataModelBuilder.NewTestCaseModel();
             var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
+            var testData = TestCaseDataModelBuilder.NewTestCaseModel();
 
             new LoginPage().
                 OpenPage().
@@ -76,8 +73,8 @@ namespace Tests
         [Test]
         public void DeleteSuite()
         {
-            var testData = SuiteDataModelBuilder.NewSuiteModel();
             var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
+            var testData = SuiteDataModelBuilder.NewSuiteModel();
 
             new SuiteApiService().CreateSuite(projectCode, testData);
 
@@ -91,9 +88,8 @@ namespace Tests
         [Test]
         public void DeleteTestCase()
         {
-            var testData = TestCaseDataModelBuilder.NewTestCaseModel();
-
             var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
+            var testData = TestCaseDataModelBuilder.NewTestCaseModel();
 
             new TestCaseApiService().CreateTestCase(projectCode, testData);
 

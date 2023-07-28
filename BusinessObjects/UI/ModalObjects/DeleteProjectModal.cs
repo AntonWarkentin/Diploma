@@ -6,7 +6,5 @@
         {
             DeleteConfirmButton = new("//span[text()='Delete project']/ancestor::button");
         }
-
-        public void ConfirmDelete() => DeleteConfirmButton.Click();
     }
 }
