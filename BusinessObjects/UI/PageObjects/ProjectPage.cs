@@ -11,6 +11,8 @@ namespace BusinessObjects.UI.PageObjects
         const string createSuiteMessage = "Suite was successfully created.";
         const string deleteSuiteMessage = "Suite was successfully deleted.";
         const string createTestCaseMessage = "Test case was created successfully!";
+        const string deleteOneTestCaseMessage = "1 test case was successfully deleted";
+        const string deleteSeveralTestCasesMessage = "{0} test cases were successfully deleted";
 
         string url = "https://app.qase.io/project/{0}";
         string projectCode;
@@ -19,6 +21,7 @@ namespace BusinessObjects.UI.PageObjects
 
         private CreateSuiteModal CreateSuiteModal => new();
         private DeleteModal DeleteModal => new();
+        private DeleteTestCaseModal DeleteTestCaseModal => new();
 
         private Button SettingsButton = new("//a[@title='Settings']");
         private Button CreateSuiteButton = new("//a[@id='create-suite-button']");
@@ -89,6 +92,10 @@ namespace BusinessObjects.UI.PageObjects
 
             TestCaseCheckBoxButton.Click();
             CheckedTestCasesDeleteButton.Click();
+            DeleteTestCaseModal.ConfirmDelete();
+
+            Assert.That(Alert.Text, Is.EqualTo(deleteOneTestCaseMessage));
+            TestCaseCheckBoxButton.AssertElementExistence(false);
         }
     }
 }

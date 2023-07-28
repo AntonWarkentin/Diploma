@@ -1,6 +1,6 @@
 ﻿namespace BusinessObjects.UI.ModalObjects
 {
-    internal class DeleteProjectModal : DeleteModal
+    public class DeleteProjectModal : DeleteModal
     {
         public DeleteProjectModal() : base()
         {

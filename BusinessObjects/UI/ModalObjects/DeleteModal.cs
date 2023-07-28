@@ -2,13 +2,13 @@
 
 namespace BusinessObjects.UI.ModalObjects
 {
-    internal class DeleteModal : BaseObject
+    public class DeleteModal : BaseObject
     {
         protected Button DeleteConfirmButton = new("//button[@type='submit']");
         protected Button DeleteCancelButton = new("//span[text()='Cancel']/ancestor::button");
 
         public DeleteModal() : base() { }
 
-        public void ConfirmDelete() => DeleteConfirmButton.Click();
+        public virtual void ConfirmDelete() => DeleteConfirmButton.Click();
     }
 }
