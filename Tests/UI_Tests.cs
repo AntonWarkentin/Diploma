@@ -5,7 +5,7 @@ using Core.SeleniumObjects.UI;
 
 namespace Tests
 {
-    public class ProjectTests
+    public class UI_Tests
     {
         [Test]
         public void CreateNewProject()
@@ -23,7 +23,7 @@ namespace Tests
         [Test]
         public void DeleteProject()
         {
-            var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
+            var projectCode = TestSteps.GetRandomExistingProjectCode();
 
             new LoginPage().
                 OpenPage().
@@ -34,7 +34,7 @@ namespace Tests
         [Test]
         public void EditProjectTest()
         {
-            var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
+            var projectCode = TestSteps.GetRandomExistingProjectCode();
             var testData = ProjectDataModelBuilder.UpdateProjectModel();
 
             new LoginPage().
@@ -47,7 +47,7 @@ namespace Tests
         [Test]
         public void CreateNewSuite()
         {
-            var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
+            var projectCode = TestSteps.GetRandomExistingProjectCode();
             var testData = SuiteDataModelBuilder.NewSuiteModel();
 
             new LoginPage().
@@ -60,7 +60,7 @@ namespace Tests
         [Test]
         public void CreateTestCase()
         {
-            var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
+            var projectCode = TestSteps.GetRandomExistingProjectCode();
             var testData = TestCaseDataModelBuilder.NewTestCaseModel();
 
             new LoginPage().
@@ -73,7 +73,7 @@ namespace Tests
         [Test]
         public void DeleteSuite()
         {
-            var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
+            var projectCode = TestSteps.GetRandomExistingProjectCode();
             var testData = SuiteDataModelBuilder.NewSuiteModel();
 
             new SuiteApiService().CreateSuite(projectCode, testData);
@@ -88,7 +88,7 @@ namespace Tests
         [Test]
         public void DeleteTestCase()
         {
-            var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
+            var projectCode = TestSteps.GetRandomExistingProjectCode();
             var testData = TestCaseDataModelBuilder.NewTestCaseModel();
 
             new TestCaseApiService().CreateTestCase(projectCode, testData);
@@ -103,8 +103,8 @@ namespace Tests
         [Test]
         public void DeleteSeveralTestCases()
         {
-            var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
-            var testCaseTitles = TestCaseSteps.CreateTestCasesBulkAndGetTitles(projectCode);
+            var projectCode = TestSteps.GetRandomExistingProjectCode();
+            var testCaseTitles = TestSteps.CreateTestCasesBulkAndGetTitles(projectCode);
 
             new LoginPage().
                 OpenPage().

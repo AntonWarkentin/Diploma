@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using System.Collections.ObjectModel;
 
 namespace Core.BaseObjects.UI

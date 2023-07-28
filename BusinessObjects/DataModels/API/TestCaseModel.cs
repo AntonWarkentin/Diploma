@@ -63,7 +63,17 @@ namespace BusinessObjects.DataModels.API
         {
             return obj is TestCaseModel model &&
                    Title == model.Title &&
+                   Status == model.Status &&
                    Description == model.Description &&
+                   SeverityStr == model.SeverityStr &&
+                   PriorityStr == model.PriorityStr &&
+                   Behavior == model.Behavior &&
+                   BehaviorStr == model.BehaviorStr &&
+                   IsFlakyStr == model.IsFlakyStr &&
+                   Type == model.Type &&
+                   AutomationStatus == model.AutomationStatus &&
+                   Layer == model.Layer &&
+                   LayerStr == model.LayerStr &&
                    Preconditions == model.Preconditions &&
                    Postconditions == model.Postconditions &&
                    Severity == model.Severity &&
@@ -76,7 +86,17 @@ namespace BusinessObjects.DataModels.API
         {
             HashCode hash = new HashCode();
             hash.Add(Title);
+            hash.Add(Status);
             hash.Add(Description);
+            hash.Add(SeverityStr);
+            hash.Add(PriorityStr);
+            hash.Add(Behavior);
+            hash.Add(BehaviorStr);
+            hash.Add(IsFlakyStr);
+            hash.Add(Type);
+            hash.Add(AutomationStatus);
+            hash.Add(Layer);
+            hash.Add(LayerStr);
             hash.Add(Preconditions);
             hash.Add(Postconditions);
             hash.Add(Severity);
