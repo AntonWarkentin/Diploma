@@ -27,5 +27,18 @@ namespace BusinessObjects.DataModels.UI
 
             return model;
         }
+
+        public static TestCasesBulkModel NewTestCasesBulkModel(int amountOfCases)
+        {
+            var cases = new TestCasesBulkModel();
+            cases.Cases = new TestCaseModel[amountOfCases];
+
+            for (int i = 0; i < amountOfCases; i++)
+            {
+                cases.Cases[i] = NewTestCaseModel();
+            }
+
+            return cases;
+        }
     }
 }

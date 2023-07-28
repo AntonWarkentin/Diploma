@@ -25,26 +25,25 @@ namespace Tests
         public void DeleteProject()
         {
             var response = new ProjectApiService().GetAllProjects();
-            var codeToDelete = response.GetRandomEntry("result.entities[*].code").ToString();
+            var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
 
             new LoginPage().
                 OpenPage().
                 Login().
-                DeleteProject(codeToDelete).
-                AssertProjectExistence(codeToDelete, false);
+                DeleteProject(projectCode).
+                AssertProjectExistence(projectCode, false);
         }
 
         [Test]
         public void EditProjectTest()
         {
             var testData = ProjectDataModelBuilder.UpdateProjectModel();
-            var response = new ProjectApiService().GetAllProjects();
-            var codeToEdit = response.GetRandomEntry("result.entities[*].code").ToString();
+            var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
 
             new LoginPage().
                 OpenPage().
                 Login().
-                OpenProjectSettings(codeToEdit).
+                OpenProjectSettings(projectCode).
                 UpdateSettings(testData);
         }
 
@@ -52,8 +51,7 @@ namespace Tests
         public void CreateNewSuite()
         {
             var testData = SuiteDataModelBuilder.NewSuiteModel();
-            var response = new ProjectApiService().GetAllProjects();
-            var projectCode = response.GetRandomEntry("result.entities[*].code").ToString();
+            var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
 
             new LoginPage().
                 OpenPage().
@@ -66,8 +64,7 @@ namespace Tests
         public void CreateTestCase()
         {
             var testData = TestCaseDataModelBuilder.NewTestCaseModel();
-            var response = new ProjectApiService().GetAllProjects();
-            var projectCode = response.GetRandomEntry("result.entities[*].code").ToString();
+            var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
 
             new LoginPage().
                 OpenPage().
@@ -80,8 +77,7 @@ namespace Tests
         public void DeleteSuite()
         {
             var testData = SuiteDataModelBuilder.NewSuiteModel();
-            var response = new ProjectApiService().GetAllProjects();
-            var projectCode = response.GetRandomEntry("result.entities[*].code").ToString();
+            var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
 
             new SuiteApiService().CreateSuite(projectCode, testData);
 
@@ -96,20 +92,30 @@ namespace Tests
         public void DeleteTestCase()
         {
             var testData = TestCaseDataModelBuilder.NewTestCaseModel();
-            var response = new ProjectApiService().GetAllProjects();
-            var projectCode = response.GetRandomEntry("result.entities[*].code").ToString();
 
-            var res = new TestCaseApiService().CreateTestCase(projectCode, testData);
+            var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
+
+            new TestCaseApiService().CreateTestCase(projectCode, testData);
 
             new LoginPage().
                 OpenPage().
                 Login().
                 OpenProject(projectCode).
-                DeleteTestCase(testData.Title, testData.SuiteId);
+                DeleteTestCase(testData.Title);
         }
 
-        //[Test]
-        //public void 
+        [Test]
+        public void DeleteSeveralTestCases()
+        {
+            var projectCode = TestCaseSteps.GetRandomExistingProjectCode();
+            var testCaseTitles = TestCaseSteps.CreateTestCasesBulkAndGetTitles(projectCode);
+
+            new LoginPage().
+                OpenPage().
+                Login().
+                OpenProject(projectCode).
+                DeleteTestCasesBulk(testCaseTitles);
+        }
 
         [TearDown]
         public void TearDown()

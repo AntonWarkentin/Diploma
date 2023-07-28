@@ -12,12 +12,14 @@ namespace BusinessObjects.UI.PageObjects
         const string deleteSuiteMessage = "Suite was successfully deleted.";
         const string createTestCaseMessage = "Test case was created successfully!";
         const string deleteOneTestCaseMessage = "1 test case was successfully deleted";
-        const string deleteSeveralTestCasesMessage = "{0} test cases were successfully deleted";
+
+        string deleteSeveralTestCasesMessage = "{0} test cases were successfully deleted";
 
         string url = "https://app.qase.io/project/{0}";
         string projectCode;
         string SuiteNameButtonXpath = "//a[@title='{0}']";
         string DeleteSuiteButtonXpath = "//span[text()='{0}']/following::button//i[contains(@class,'trash')]";
+        string TestCaseCheckBoxButtonXpath = "//div[text()='{0}']/preceding::input[@type='checkbox'][1]";
 
         private CreateSuiteModal CreateSuiteModal => new();
         private DeleteModal DeleteModal => new();
@@ -26,15 +28,13 @@ namespace BusinessObjects.UI.PageObjects
         private Button SettingsButton = new("//a[@title='Settings']");
         private Button CreateSuiteButton = new("//a[@id='create-suite-button']");
         private Button CreateCaseButton = new("//a[@id='create-case-button']");
-        private BaseElement Alert = new("//div[@role='alert']/span/span");
         private Button SuiteNameButton;
         private Button DeleteSuiteButton;
-        private Button TestCasesWithoutSuiteButton = new("//a[@title='Test cases without suite']");
-
-        private string TestCaseCheckBoxButtonXpath = "//div[text()='{0}']/preceding::input[@type='checkbox'][1]";
+        private Button TestCasesCaretButtons = new("//i[contains(@class,'caret-down')][not(@class='fa fa-caret-down')]/following::a[1]");
         private Button TestCaseCheckBoxButton;
+        private Button DeleteCheckedTestCasesButton = new("//i[contains(@class, 'trash')]/ancestor::button[contains(@class,'secondary')]");
 
-        private Button CheckedTestCasesDeleteButton = new("//i[contains(@class, 'trash')]/ancestor::button[contains(@class,'secondary')]");
+        private BaseElement Alert = new("//div[@role='alert']/span/span");
 
 
         public ProjectPage(string projectCode) : base()
@@ -81,21 +81,38 @@ namespace BusinessObjects.UI.PageObjects
             SuiteNameButton.AssertElementExistence(false);
         }
 
-        public void DeleteTestCase(string title, long? suiteId)
+        public void ShowAllTestSuites()
+        {
+            TestCasesCaretButtons.GetElements().ToList().ForEach(x => x.Click());
+        }
+
+        public void DeleteTestCase(string title)
         {
             TestCaseCheckBoxButton = new(TestCaseCheckBoxButtonXpath, title);
 
-            if (suiteId == null)
-            {
-                TestCasesWithoutSuiteButton.Click();
-            }
+            ShowAllTestSuites();
 
             TestCaseCheckBoxButton.Click();
-            CheckedTestCasesDeleteButton.Click();
+            DeleteCheckedTestCasesButton.Click();
             DeleteTestCaseModal.ConfirmDelete();
 
             Assert.That(Alert.Text, Is.EqualTo(deleteOneTestCaseMessage));
             TestCaseCheckBoxButton.AssertElementExistence(false);
+        }
+
+        public void DeleteTestCasesBulk(List<string> titles)
+        {
+            deleteSeveralTestCasesMessage = string.Format(deleteSeveralTestCasesMessage, titles.Count);
+
+            ShowAllTestSuites();
+
+            titles.ForEach(x => new Button(TestCaseCheckBoxButtonXpath, x).Click());
+
+            DeleteCheckedTestCasesButton.Click();
+            DeleteTestCaseModal.ConfirmDelete();
+
+            Assert.That(Alert.Text, Is.EqualTo(deleteSeveralTestCasesMessage));
+            titles.ForEach(x => new Button(TestCaseCheckBoxButtonXpath, x).AssertElementExistence(false));
         }
     }
 }
