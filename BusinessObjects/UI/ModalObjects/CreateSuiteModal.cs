@@ -3,7 +3,7 @@ using Core.BaseObjects.UI;
 
 namespace BusinessObjects.UI.ModalObjects
 {
-    public class CreateSuiteModal : BaseObject
+    public class CreateSuiteModal : BaseModal
     {
         private TextField SuiteNameTextField = new("//input[@id='title']");
         private TextField DescriptionTextField = new("//label[@for='description']/following::div//p");

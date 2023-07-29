@@ -74,7 +74,7 @@ namespace BusinessObjects.UI.PageObjects
 
             SuiteNameButton.Click();
             DeleteSuiteButton.Click();
-            DeleteModal.ConfirmDelete();
+            DeleteModal.Confirm();
 
             Assert.That(Alert.Text, Is.EqualTo(deleteSuiteMessage));
             SuiteNameButton.AssertElementExistence(false);
@@ -93,7 +93,7 @@ namespace BusinessObjects.UI.PageObjects
 
             TestCaseCheckBoxButton.Click();
             DeleteCheckedTestCasesButton.Click();
-            DeleteTestCaseModal.ConfirmDelete();
+            DeleteTestCaseModal.Confirm();
 
             Assert.That(Alert.Text, Is.EqualTo(deleteOneTestCaseMessage));
             TestCaseCheckBoxButton.AssertElementExistence(false);
@@ -108,7 +108,7 @@ namespace BusinessObjects.UI.PageObjects
             titles.ForEach(x => new Button(TestCaseCheckBoxButtonXpath, x).Click());
 
             DeleteCheckedTestCasesButton.Click();
-            DeleteTestCaseModal.ConfirmDelete();
+            DeleteTestCaseModal.Confirm();
 
             Assert.That(Alert.Text, Is.EqualTo(deleteSeveralTestCasesMessage));
             titles.ForEach(x => new Button(TestCaseCheckBoxButtonXpath, x).AssertElementExistence(false));

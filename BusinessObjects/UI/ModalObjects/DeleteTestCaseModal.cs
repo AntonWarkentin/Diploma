@@ -2,7 +2,7 @@
 
 namespace BusinessObjects.UI.ModalObjects
 {
-    public class DeleteTestCaseModal : DeleteModal
+    public class DeleteTestCaseModal : BaseModal
     {
         string confirmText = "CONFIRM";
 
@@ -10,10 +10,10 @@ namespace BusinessObjects.UI.ModalObjects
 
         public DeleteTestCaseModal() : base() { }
 
-        public override void ConfirmDelete()
+        public override void Confirm()
         {
             ConfirmTextField.SendKeys(confirmText);
-            base.ConfirmDelete();
+            base.Confirm();
         }
     }
 }

@@ -69,7 +69,7 @@ namespace BusinessObjects.UI.PageObjects
 
             ProjectsDropDown = new(projectCode);
             ProjectsDropDown.SelectOption(ProjectsDropDown.DeleteButton);
-            DeleteProjectModal.ConfirmDelete();
+            DeleteProjectModal.Confirm();
 
             ProjectTitle = this.SearchForProject(projectCode);
             ProjectTitle.AssertElementExistence(false);
