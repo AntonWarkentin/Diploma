@@ -1,7 +1,7 @@
 ﻿{
   "Browser": {
     "TypeBrowser": "Chrome",
-    "Headless": true,
+    "Headless": false,
     "TimeOut": "5",
     "StartUrl": "https://app.qase.io"
   },
