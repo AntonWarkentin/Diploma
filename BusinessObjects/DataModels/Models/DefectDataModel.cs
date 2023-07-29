@@ -1,19 +1,20 @@
 ﻿using Newtonsoft.Json;
+using System.Globalization;
 
 namespace BusinessObjects.DataModels.Models
 {
     public class DefectDataModel
     {
-        static Dictionary<string, string> SeverityDict = new()
+        public enum Severities
         {
-            ["0"] = "undefined",
-            ["1"] = "blocker",
-            ["2"] = "critical",
-            ["3"] = "major",
-            ["4"] = "normal",
-            ["5"] = "minor",
-            ["6"] = "trivial",
-        };
+            undefined = 0,
+            blocker = 1,
+            critical = 2,
+            major = 3,
+            normal = 4,
+            minor = 5,
+            trivial = 6
+        }
 
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
@@ -24,6 +25,21 @@ namespace BusinessObjects.DataModels.Models
         [JsonProperty("severity", NullValueHandling = NullValueHandling.Ignore)]
         public string Severity { get; set; }
 
+        public int SeverityInt
+        {
+            get
+            {
+                int result;
+                if (int.TryParse(Severity,
+                        NumberStyles.AllowThousands,
+                        CultureInfo.InvariantCulture,
+                        out result))
+                    return result;
+                else
+                    return 0;
+            }
+        }
+
         [JsonProperty("tags.title", NullValueHandling = NullValueHandling.Ignore)]
         public string[] Tags { get; set; }
 
@@ -32,7 +48,7 @@ namespace BusinessObjects.DataModels.Models
             return obj is DefectDataModel model &&
                    Title == model.Title &&
                    ActualResult == model.ActualResult &&
-                   SeverityDict[Severity] == model.Severity &&
+                   ((Severities)SeverityInt).ToString() == model.Severity &&
                    EqualityComparer<string[]>.Default.Equals(Tags, model.Tags);
         }
 
