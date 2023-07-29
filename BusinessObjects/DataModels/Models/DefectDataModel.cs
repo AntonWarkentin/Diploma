@@ -4,6 +4,17 @@ namespace BusinessObjects.DataModels.Models
 {
     public class DefectDataModel
     {
+        static Dictionary<string, string> SeverityDict = new()
+        {
+            ["0"] = "undefined",
+            ["1"] = "blocker",
+            ["2"] = "critical",
+            ["3"] = "major",
+            ["4"] = "normal",
+            ["5"] = "minor",
+            ["6"] = "trivial",
+        };
+
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
 
@@ -12,9 +23,6 @@ namespace BusinessObjects.DataModels.Models
         
         [JsonProperty("severity", NullValueHandling = NullValueHandling.Ignore)]
         public string Severity { get; set; }
-        
-        [JsonProperty("custom_field", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, string> CustomField { get; set; }
 
         [JsonProperty("tags.title", NullValueHandling = NullValueHandling.Ignore)]
         public string[] Tags { get; set; }
@@ -24,14 +32,13 @@ namespace BusinessObjects.DataModels.Models
             return obj is DefectDataModel model &&
                    Title == model.Title &&
                    ActualResult == model.ActualResult &&
-                   //Severity == model.Severity &&
-                   EqualityComparer<Dictionary<string, string>>.Default.Equals(CustomField, model.CustomField) &&
+                   SeverityDict[Severity] == model.Severity &&
                    EqualityComparer<string[]>.Default.Equals(Tags, model.Tags);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Title, ActualResult, /*Severity,*/ CustomField, Tags);
+            return HashCode.Combine(Title, ActualResult, Tags);
         }
     }
 }

@@ -2,7 +2,6 @@
 using BusinessObjects.DataModels.Builders;
 using BusinessObjects.DataModels.UI;
 using Core.Helpers;
-using NUnit.Framework.Interfaces;
 using System.Net;
 
 namespace Tests
