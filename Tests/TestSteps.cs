@@ -1,6 +1,7 @@
 ﻿using BusinessObjects.API;
 using BusinessObjects.DataModels.Builders;
 using BusinessObjects.DataModels.Models;
+using BusinessObjects.UI.PageObjects;
 using Core.Helpers;
 
 namespace Tests
@@ -9,6 +10,13 @@ namespace Tests
     {
         private const int amountOfCasesBulk = 3;
         
+        public static ProjectsPage Login()
+        {
+            return new LoginPage().
+                    OpenPage().
+                    Login();
+        }
+
         public static List<string> CreateTestCasesBulkAndGetTitles(string projectCode)
         {
             var testData = TestCaseDataModelBuilder.NewTestCasesBulkModel(amountOfCasesBulk);

@@ -12,9 +12,7 @@ namespace Tests
         {
             var testData = ProjectDataModelBuilder.NewProjectModel();
 
-            new LoginPage().
-                OpenPage().
-                Login().
+            TestSteps.Login().
                 CreateNewProject(testData).
                 OpenSettings().
                 CheckOutProjectSettings(testData);
@@ -25,9 +23,7 @@ namespace Tests
         {
             var projectCode = TestSteps.GetRandomExistingProjectCode();
 
-            new LoginPage().
-                OpenPage().
-                Login().
+            TestSteps.Login().
                 DeleteProject(projectCode);
         }
 
@@ -37,9 +33,7 @@ namespace Tests
             var projectCode = TestSteps.GetRandomExistingProjectCode();
             var testData = ProjectDataModelBuilder.UpdateProjectModel();
 
-            new LoginPage().
-                OpenPage().
-                Login().
+            TestSteps.Login().
                 OpenProjectSettings(projectCode).
                 UpdateSettings(testData);
         }
@@ -50,9 +44,7 @@ namespace Tests
             var projectCode = TestSteps.GetRandomExistingProjectCode();
             var testData = SuiteDataModelBuilder.NewSuiteModel();
 
-            new LoginPage().
-                OpenPage().
-                Login().
+            TestSteps.Login().
                 OpenProject(projectCode).
                 CreateSuite(testData);
         }
@@ -63,9 +55,7 @@ namespace Tests
             var projectCode = TestSteps.GetRandomExistingProjectCode();
             var testData = TestCaseDataModelBuilder.NewTestCaseModel();
 
-            new LoginPage().
-                OpenPage().
-                Login().
+            TestSteps.Login().
                 OpenProject(projectCode).
                 CreateTestCase(testData);
         }
@@ -78,9 +68,7 @@ namespace Tests
 
             new SuiteApiService().CreateSuite(projectCode, testData);
 
-            new LoginPage().
-                OpenPage().
-                Login().
+            TestSteps.Login().
                 OpenProject(projectCode).
                 DeleteSuite(testData.Title);
         }
@@ -93,9 +81,7 @@ namespace Tests
 
             new TestCaseApiService().CreateTestCase(projectCode, testData);
 
-            new LoginPage().
-                OpenPage().
-                Login().
+            TestSteps.Login().
                 OpenProject(projectCode).
                 DeleteTestCase(testData.Title);
         }
@@ -106,9 +92,7 @@ namespace Tests
             var projectCode = TestSteps.GetRandomExistingProjectCode();
             var testCaseTitles = TestSteps.CreateTestCasesBulkAndGetTitles(projectCode);
 
-            new LoginPage().
-                OpenPage().
-                Login().
+            TestSteps.Login().
                 OpenProject(projectCode).
                 DeleteTestCasesBulk(testCaseTitles);
         }
