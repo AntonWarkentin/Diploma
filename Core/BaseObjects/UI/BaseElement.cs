@@ -10,9 +10,16 @@ namespace Core.BaseObjects.UI
 
         public string Text { get => this.GetElement().Text; }
         public bool Selected { get => this.GetElement().Selected; }
+        public bool Displayed { get => this.GetElement().Displayed; }
+        public bool NotDisplayed { get => this.GetElements().Count == 0; }
 
 
-        public IWebElement GetElement() => driver.FindElement(locator);
+        public IWebElement GetElement()
+        {
+            wait.Until(x => x.FindElement(locator));
+            return driver.FindElement(locator);
+        }
+
         public ReadOnlyCollection<IWebElement> GetElements() => driver.FindElements(locator);
 
         public BaseElement(string xpath)
@@ -24,6 +31,11 @@ namespace Core.BaseObjects.UI
         {
             xpath = string.Format(xpath, valueToInsert);
             locator = By.XPath(xpath);
+        }
+
+        public BaseElement(By by)
+        {
+            locator = by;
         }
 
         public string GetAttribute(string attributeName)

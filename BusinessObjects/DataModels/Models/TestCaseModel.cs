@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace BusinessObjects.DataModels.API
+namespace BusinessObjects.DataModels.Models
 {
     public class TestCaseModel
     {
@@ -10,9 +10,9 @@ namespace BusinessObjects.DataModels.API
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
 
-        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Status { get; set; }
 
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
 
         public string SeverityStr { get; set; }
@@ -20,16 +20,20 @@ namespace BusinessObjects.DataModels.API
         public string PriorityStr { get; set; }
 
         [JsonProperty("behavior", NullValueHandling = NullValueHandling.Ignore)]
-        public string Behavior { get; set; }
+        public int Behavior { get; set; }
+
+        public string BehaviorStr { get; set; }
 
         public string IsFlakyStr { get; set; }
 
         public string Type { get; set; }
 
         public string AutomationStatus { get; set; }
-        
+
         [JsonProperty("layer", NullValueHandling = NullValueHandling.Ignore)]
-        public string Layer { get; set; }
+        public int Layer { get; set; }
+
+        public string LayerStr { get; set; }
 
         [JsonProperty("preconditions", NullValueHandling = NullValueHandling.Ignore)]
         public string Preconditions { get; set; }
@@ -47,7 +51,7 @@ namespace BusinessObjects.DataModels.API
         public int? IsFlaky { get; set; }
 
         [JsonProperty("suite_id", NullValueHandling = NullValueHandling.Ignore)]
-        public Int64? SuiteId { get; set; }
+        public long? SuiteId { get; set; }
 
         [JsonProperty("created_at")]
         public DateTime CreatedAt { get; set; }
@@ -59,7 +63,17 @@ namespace BusinessObjects.DataModels.API
         {
             return obj is TestCaseModel model &&
                    Title == model.Title &&
+                   Status == model.Status &&
                    Description == model.Description &&
+                   SeverityStr == model.SeverityStr &&
+                   PriorityStr == model.PriorityStr &&
+                   Behavior == model.Behavior &&
+                   BehaviorStr == model.BehaviorStr &&
+                   IsFlakyStr == model.IsFlakyStr &&
+                   Type == model.Type &&
+                   AutomationStatus == model.AutomationStatus &&
+                   Layer == model.Layer &&
+                   LayerStr == model.LayerStr &&
                    Preconditions == model.Preconditions &&
                    Postconditions == model.Postconditions &&
                    Severity == model.Severity &&
@@ -72,7 +86,17 @@ namespace BusinessObjects.DataModels.API
         {
             HashCode hash = new HashCode();
             hash.Add(Title);
+            hash.Add(Status);
             hash.Add(Description);
+            hash.Add(SeverityStr);
+            hash.Add(PriorityStr);
+            hash.Add(Behavior);
+            hash.Add(BehaviorStr);
+            hash.Add(IsFlakyStr);
+            hash.Add(Type);
+            hash.Add(AutomationStatus);
+            hash.Add(Layer);
+            hash.Add(LayerStr);
             hash.Add(Preconditions);
             hash.Add(Postconditions);
             hash.Add(Severity);

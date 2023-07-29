@@ -1,4 +1,4 @@
-﻿using BusinessObjects.DataModels.API;
+﻿using BusinessObjects.DataModels.Models;
 using Core.BaseObjects.UI;
 
 namespace BusinessObjects.UI.PageObjects
@@ -39,9 +39,9 @@ namespace BusinessObjects.UI.PageObjects
             SeverityComboBox.ClickOption(data.SeverityStr);
             PriorityComboBox.ClickOption(data.PriorityStr);
             TypeComboBox.ClickOption(data.Type);
-            LayerComboBox.ClickOption(data.Layer);
+            LayerComboBox.ClickOption(data.LayerStr);
             IsFlakyComboBox.ClickOption(data.IsFlakyStr);
-            BehaviorComboBox.ClickOption(data.Behavior);
+            BehaviorComboBox.ClickOption(data.BehaviorStr);
             AutomationComboBox.ClickOption(data.AutomationStatus);
             PreconditionsTextField.SendKeys(data.Preconditions);
             PostconditionsTextField.SendKeys(data.Postconditions);

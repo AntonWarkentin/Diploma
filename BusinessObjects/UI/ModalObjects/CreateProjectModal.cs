@@ -1,10 +1,10 @@
-﻿using BusinessObjects.DataModels.UI;
+﻿using BusinessObjects.DataModels.Models;
 using BusinessObjects.UI.RadioButtonObjects;
 using Core.BaseObjects.UI;
 
 namespace BusinessObjects.UI.ModalObjects
 {
-    public class CreateProjectModal : BaseObject
+    public class CreateProjectModal : BaseModal
     {
         private ProjectAccessTypeRadioButtons projectAccess = new();
         private MemberAccessTypeRadioButtons memberAccess = new();
@@ -19,6 +19,8 @@ namespace BusinessObjects.UI.ModalObjects
         public void FillNewProjectData(ProjectDataModel dataModel)
         {
             ProjectNameInput.SendKeys(dataModel.Name);
+            wait.Until(_ => ProjectNameInput.Text.Equals(ProjectCodeInput.Text));
+
             ProjectCodeInput.SendKeys(dataModel.Code);
             ProjectDescriptionArea.SendKeys(dataModel.Description);
 

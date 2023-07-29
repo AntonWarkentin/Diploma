@@ -5,23 +5,20 @@ namespace Core.SeleniumObjects.UI
 {
     public class Browser
     {
-        private static Browser instance = null;
-
-        public static Browser Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new Browser();
-                }
-
-                return instance;
-            }
-        }
+        private static readonly ThreadLocal<Browser> BrowserInstances = new();
 
         private IWebDriver driver;
         public IWebDriver Driver { get { return driver; } }
+
+        private static Browser instance = null;
+
+        public static Browser Instance => GetBrowser();
+
+        private static Browser GetBrowser()
+        {
+            return BrowserInstances.Value ??= new Browser();
+        }
+
 
         private Browser()
         {
@@ -34,7 +31,7 @@ namespace Core.SeleniumObjects.UI
         public void CloseBrowser()
         {
             driver?.Dispose();
-            instance = null;
+            BrowserInstances.Value = null;
         }
 
         public void NavigateToUrl(string url)

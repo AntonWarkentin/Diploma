@@ -1,5 +1,6 @@
 ﻿using Core.SeleniumObjects.UI;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace Core.BaseObjects.UI
 {
@@ -7,9 +8,8 @@ namespace Core.BaseObjects.UI
     {
         protected IWebDriver driver => Browser.Instance.Driver;
 
-        public BaseObject()
-        {
-            Thread.Sleep(1000);
-        }
+        protected WebDriverWait wait => new WebDriverWait(driver, new TimeSpan(0, 0, 20));
+
+        public BaseObject() { }
     }
 }

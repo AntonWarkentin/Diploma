@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using RestSharp;
+using Bogus;
 
 namespace Core.Helpers
 {
@@ -58,6 +59,14 @@ namespace Core.Helpers
             }
 
             return entry;
+        }
+        
+        public static JToken GetRandomEntry(this RestResponse response, string tokenPath)
+        {
+            var allTokens = response.DeserializeJsonAndGetTokens(tokenPath).ToList<JToken>();
+            var randomIndex = new Faker().Random.Number(allTokens.Count - 1);
+
+            return allTokens[randomIndex];
         }
     }
 }

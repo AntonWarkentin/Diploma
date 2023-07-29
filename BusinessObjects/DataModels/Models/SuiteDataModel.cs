@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace BusinessObjects.DataModels.UI
+namespace BusinessObjects.DataModels.Models
 {
     public class SuiteDataModel
     {

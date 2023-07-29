@@ -1,4 +1,4 @@
-﻿using BusinessObjects.DataModels.UI;
+﻿using BusinessObjects.DataModels.Models;
 using BusinessObjects.UI.DropDownObjects;
 using BusinessObjects.UI.ModalObjects;
 using Core.BaseObjects.UI;
@@ -69,7 +69,10 @@ namespace BusinessObjects.UI.PageObjects
 
             ProjectsDropDown = new(projectCode);
             ProjectsDropDown.SelectOption(ProjectsDropDown.DeleteButton);
-            DeleteProjectModal.ConfirmDelete();
+            DeleteProjectModal.Confirm();
+
+            ProjectTitle = this.SearchForProject(projectCode);
+            ProjectTitle.AssertElementExistence(false);
 
             return this;
         }

@@ -1,6 +1,7 @@
 ﻿using Bogus;
+using BusinessObjects.DataModels.Models;
 
-namespace BusinessObjects.DataModels.UI
+namespace BusinessObjects.DataModels.Builders
 {
     public static class ProjectDataModelBuilder
     {
@@ -10,7 +11,7 @@ namespace BusinessObjects.DataModels.UI
             var model = new ProjectDataModel()
             {
                 Name = $"{faker.Hacker.Noun()} ({faker.Date.RecentTimeOnly()})",
-                Code = faker.Hacker.Abbreviation() + faker.Random.Number(),
+                Code = faker.Hacker.Abbreviation() + faker.Random.Number(0, 3000),
                 Description = faker.Hacker.Phrase()
             };
 

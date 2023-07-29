@@ -1,7 +1,7 @@
 ﻿using Bogus;
-using BusinessObjects.DataModels.API;
+using BusinessObjects.DataModels.Models;
 
-namespace BusinessObjects.DataModels.UI
+namespace BusinessObjects.DataModels.Builders
 {
     public class TestCaseDataModelBuilder
     {
@@ -16,15 +16,29 @@ namespace BusinessObjects.DataModels.UI
                 SeverityStr = "Major",
                 PriorityStr = "Medium",
                 Type = "Security",
-                Layer = "E2E",
+                LayerStr = "E2E",
                 IsFlakyStr = "Yes",
-                Behavior = "Negative",
+                BehaviorStr = "Negative",
+                Behavior = 1,
                 AutomationStatus = "To be automated",
                 Preconditions = $"Precon_{faker.Hacker.Phrase()}",
                 Postconditions = $"Postcon_{faker.Hacker.Phrase()}",
             };
 
             return model;
+        }
+
+        public static TestCasesBulkModel NewTestCasesBulkModel(int amountOfCases)
+        {
+            var cases = new TestCasesBulkModel();
+            cases.Cases = new TestCaseModel[amountOfCases];
+
+            for (int i = 0; i < amountOfCases; i++)
+            {
+                cases.Cases[i] = NewTestCaseModel();
+            }
+
+            return cases;
         }
     }
 }

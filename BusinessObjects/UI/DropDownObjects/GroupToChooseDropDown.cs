@@ -10,7 +10,7 @@ namespace BusinessObjects.UI.DropDownObjects
         public GroupToChooseDropDown() : base()
         {
             DropDownButton = new("//input[@aria-autocomplete='list']");
-            GroupToChooseOptionButton = new("//div[@data-popper-placement='bottom-start']");
+            GroupToChooseOptionButton = new("//div[@aria-selected='false']");
         }
     }
 }
