@@ -1,4 +1,4 @@
-﻿using BusinessObjects.DataModels.API;
+﻿using BusinessObjects.DataModels.Models;
 using Newtonsoft.Json.Linq;
 
 namespace Core.Helpers

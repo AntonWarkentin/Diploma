@@ -1,4 +1,4 @@
-﻿using BusinessObjects.DataModels.UI;
+﻿using BusinessObjects.DataModels.Models;
 using Core.BaseObjects.UI;
 
 namespace BusinessObjects.UI.ModalObjects

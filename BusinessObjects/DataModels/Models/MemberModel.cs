@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace BusinessObjects.DataModels.API
+namespace BusinessObjects.DataModels.Models
 {
     public class MemberModel
     {

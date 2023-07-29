@@ -30,5 +30,25 @@ namespace BusinessObjects.API
 
             return apiClient.Execute(request);
         }
+
+        public RestResponse UpdateDefect(string projectCode, string defectId, DefectDataModel defect)
+        {
+            var request = new RestRequest(SpecificDefectEndpoint, Method.Patch).
+                            AddUrlSegment("code", projectCode).
+                            AddUrlSegment("id", defectId);
+
+            request.AddBody(JsonConvert.SerializeObject(defect), ContentType.Json);
+
+            return apiClient.Execute(request);
+        }
+        
+        public RestResponse DeleteDefect(string projectCode, string defectId)
+        {
+            var request = new RestRequest(SpecificDefectEndpoint, Method.Delete).
+                            AddUrlSegment("code", projectCode).
+                            AddUrlSegment("id", defectId);
+
+            return apiClient.Execute(request);
+        }
     }
 }

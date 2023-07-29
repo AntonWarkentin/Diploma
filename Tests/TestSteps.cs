@@ -1,6 +1,6 @@
 ﻿using BusinessObjects.API;
+using BusinessObjects.DataModels.Builders;
 using BusinessObjects.DataModels.Models;
-using BusinessObjects.DataModels.UI;
 using Core.Helpers;
 
 namespace Tests
@@ -36,6 +36,14 @@ namespace Tests
             var responseCreateSuite = new SuiteApiService().CreateSuite(projectCode, testData);
 
             return responseCreateSuite.DeserializeJsonAndGetToken("result.id").ToString();
+        }
+
+        public static string CreateDefectForTest(string projectCode)
+        {
+            var testData = DefectDataModelBuilder.CreateDefectModel();
+            var responseCreateDefect = new DefectApiService().CreateDefect(projectCode, testData);
+
+            return responseCreateDefect.DeserializeJsonAndGetToken("result.id").ToString();
         }
 
         public static SuiteDataModel GetSuite(string projectCode, string suiteId)

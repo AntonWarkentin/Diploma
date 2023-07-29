@@ -1,4 +1,4 @@
-﻿using BusinessObjects.DataModels.UI;
+﻿using BusinessObjects.DataModels.Models;
 using Core.SeleniumObjects.API;
 using Newtonsoft.Json;
 using RestSharp;

@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DataModels\UI\" />
     <Folder Include="Helpers\" />
   </ItemGroup>
 

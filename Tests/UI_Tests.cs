@@ -1,5 +1,5 @@
 ﻿using BusinessObjects.API;
-using BusinessObjects.DataModels.UI;
+using BusinessObjects.DataModels.Builders;
 using BusinessObjects.UI.PageObjects;
 using Core.SeleniumObjects.UI;
 

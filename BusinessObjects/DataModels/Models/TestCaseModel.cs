@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace BusinessObjects.DataModels.API
+namespace BusinessObjects.DataModels.Models
 {
     public class TestCaseModel
     {
@@ -9,7 +9,7 @@ namespace BusinessObjects.DataModels.API
 
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
-        
+
         public string Status { get; set; }
 
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
@@ -29,7 +29,7 @@ namespace BusinessObjects.DataModels.API
         public string Type { get; set; }
 
         public string AutomationStatus { get; set; }
-        
+
         [JsonProperty("layer", NullValueHandling = NullValueHandling.Ignore)]
         public int Layer { get; set; }
 
@@ -51,7 +51,7 @@ namespace BusinessObjects.DataModels.API
         public int? IsFlaky { get; set; }
 
         [JsonProperty("suite_id", NullValueHandling = NullValueHandling.Ignore)]
-        public Int64? SuiteId { get; set; }
+        public long? SuiteId { get; set; }
 
         [JsonProperty("created_at")]
         public DateTime CreatedAt { get; set; }

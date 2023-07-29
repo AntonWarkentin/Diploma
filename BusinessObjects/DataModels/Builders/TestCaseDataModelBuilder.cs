@@ -1,7 +1,7 @@
 ﻿using Bogus;
-using BusinessObjects.DataModels.API;
+using BusinessObjects.DataModels.Models;
 
-namespace BusinessObjects.DataModels.UI
+namespace BusinessObjects.DataModels.Builders
 {
     public class TestCaseDataModelBuilder
     {

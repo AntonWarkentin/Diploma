@@ -1,6 +1,5 @@
 ﻿using BusinessObjects.API;
 using BusinessObjects.DataModels.Builders;
-using BusinessObjects.DataModels.UI;
 using Core.Helpers;
 using System.Net;
 
@@ -30,9 +29,8 @@ namespace Tests
 
             var responseDeleteSuite = new SuiteApiService().DeleteSuite(projectCode, suiteId);
             Assert.IsTrue(responseDeleteSuite.StatusCode.Equals(HttpStatusCode.OK));
-            var responseSuiteId = responseDeleteSuite.DeserializeJsonAndGetToken("result.id").ToString();
 
-            var responseGetSpecificSuite = new SuiteApiService().GetSpecificSuite(projectCode, responseSuiteId);
+            var responseGetSpecificSuite = new SuiteApiService().GetSpecificSuite(projectCode, suiteId);
             Assert.IsTrue(responseGetSpecificSuite.StatusCode.Equals(HttpStatusCode.NotFound));
         }
 
@@ -62,6 +60,33 @@ namespace Tests
             var responseDefectId = responseCreateDefect.DeserializeJsonAndGetToken("result.id").ToString();
             var responsedDefect = TestSteps.GetDefect(projectCode, responseDefectId);
             Assert.That(responsedDefect, Is.EqualTo(testData));
+        }
+        
+        [Test]
+        public static void UpdateDefect()
+        {
+            var projectCode = TestSteps.GetRandomExistingProjectCode();
+            var testData = DefectDataModelBuilder.UpdateDefectModel();
+            var defectId = TestSteps.CreateDefectForTest(projectCode);
+
+            var responseUpdateDefect = new DefectApiService().UpdateDefect(projectCode, defectId, testData);
+            Assert.IsTrue(responseUpdateDefect.StatusCode.Equals(HttpStatusCode.OK));
+
+            var responsedDefect = TestSteps.GetDefect(projectCode, defectId);
+            Assert.That(responsedDefect, Is.EqualTo(testData));
+        }
+        
+        [Test]
+        public static void DeleteDefect()
+        {
+            var projectCode = TestSteps.GetRandomExistingProjectCode();
+            var defectId = TestSteps.CreateDefectForTest(projectCode);
+
+            var responseDeleteDefect = new DefectApiService().DeleteDefect(projectCode, defectId);
+            Assert.IsTrue(responseDeleteDefect.StatusCode.Equals(HttpStatusCode.OK));
+
+            var responseGetSpecificSuite = new DefectApiService().GetSpecificDefect(projectCode, defectId);
+            Assert.IsTrue(responseGetSpecificSuite.StatusCode.Equals(HttpStatusCode.NotFound));
         }
     }
 }

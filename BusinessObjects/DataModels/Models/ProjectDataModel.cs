@@ -1,4 +1,4 @@
-﻿namespace BusinessObjects.DataModels.UI
+﻿namespace BusinessObjects.DataModels.Models
 {
     public class ProjectDataModel
     {

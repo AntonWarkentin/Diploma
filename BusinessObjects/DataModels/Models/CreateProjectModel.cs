@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace BusinessObjects.DataModels.API
+namespace BusinessObjects.DataModels.Models
 {
     public class CreateProjectModel
     {

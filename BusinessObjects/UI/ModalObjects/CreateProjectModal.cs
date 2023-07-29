@@ -1,4 +1,4 @@
-﻿using BusinessObjects.DataModels.UI;
+﻿using BusinessObjects.DataModels.Models;
 using BusinessObjects.UI.RadioButtonObjects;
 using Core.BaseObjects.UI;
 
