@@ -1,10 +1,13 @@
 ﻿using BusinessObjects.API;
 using BusinessObjects.DataModels.Builders;
 using Core.Helpers;
+using NUnit.Allure.Attributes;
 using System.Net;
+using Tests.Core;
 
 namespace Tests.API_Tests
 {
+    [AllureSuite("Suite API Tests")]
     public class SuiteTests : BaseTest
     {
         [Test]

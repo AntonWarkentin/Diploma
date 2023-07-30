@@ -1,8 +1,11 @@
 ﻿using BusinessObjects.DataModels.Builders;
+using NUnit.Allure.Attributes;
+using Tests.Core;
 
 namespace Tests.UI_Tests
 {
-    public class ProjectTests : BaseTest
+    [AllureSuite("Project UI Tests")]
+    public class ProjectTests : BaseUITest
     {
         [Test]
         public void CreateNewProject()

@@ -1,9 +1,12 @@
 ﻿using BusinessObjects.API;
 using BusinessObjects.DataModels.Builders;
+using NUnit.Allure.Attributes;
+using Tests.Core;
 
 namespace Tests.UI_Tests
 {
-    public class TestCaseTests : BaseTest
+    [AllureSuite("TestCase UI Tests")]
+    public class TestCaseTests : BaseUITest
     {
         [Test]
         public void CreateTestCase()

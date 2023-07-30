@@ -5,14 +5,14 @@ using BusinessObjects.UI.PageObjects;
 using Core.Helpers;
 using NLog;
 
-namespace Tests
+namespace Tests.Core
 {
     public class TestSteps
     {
         protected static Logger logger = LogManager.GetCurrentClassLogger();
 
         private const int amountOfCasesBulk = 3;
-        
+
         public static ProjectsPage Login()
         {
             return new LoginPage().
@@ -23,7 +23,7 @@ namespace Tests
         public static List<string> CreateTestCasesBulkAndGetTitles(string projectCode)
         {
             logger.Info("Preparing test data for AT:");
-            
+
             var testData = TestCaseDataModelBuilder.NewTestCasesBulkModel(amountOfCasesBulk);
             var titles = new List<string>();
 
@@ -71,7 +71,7 @@ namespace Tests
             var responseGetSpecificSuite = new SuiteApiService().GetSpecificSuite(projectCode, suiteId);
             return responseGetSpecificSuite.DeserializeJsonAndGetToken("result").ToObject<SuiteDataModel>();
         }
-        
+
         public static DefectDataModel GetDefect(string projectCode, string defectId)
         {
             var responseGetSpecificSuite = new DefectApiService().GetSpecificDefect(projectCode, defectId);
