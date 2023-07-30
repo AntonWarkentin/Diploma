@@ -1,6 +1,8 @@
-﻿namespace BusinessObjects.DataModels.Models
+﻿using Core.BaseObjects.DataModels;
+
+namespace BusinessObjects.DataModels.Models
 {
-    public class ProjectDataModel
+    public class ProjectDataModel : BaseDataModel
     {
         public string Name { get; set; }
         public string Code { get; set; }

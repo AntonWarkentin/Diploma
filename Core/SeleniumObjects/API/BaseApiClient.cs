@@ -1,11 +1,14 @@
 ﻿using Core.Configuration.Logic;
-using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using NLog;
 using RestSharp;
 
 namespace Core.SeleniumObjects.API
 {
     public class BaseApiClient
     {
+        protected Logger logger = LogManager.GetCurrentClassLogger();
+
         private RestClient restClient;
 
         public BaseApiClient(string url)
@@ -28,14 +31,10 @@ namespace Core.SeleniumObjects.API
 
         public RestResponse Execute(RestRequest request)
         {
+            logger.Info("Executing Rest request with parameters:\n" + JsonConvert.SerializeObject(request));
             var response = restClient.Execute<RestResponse>(request);
+            logger.Info("Response is:\n" + response.Content.Normalize());
             return response;
-        }
-
-        public T Execute<T>(RestRequest request)
-        {
-            var response = restClient.Execute<T>(request);
-            return response.Data;
         }
     }
 }

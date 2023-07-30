@@ -11,10 +11,14 @@
 
   <ItemGroup>
     <None Remove="appdata.json" />
+    <None Remove="NLog.config" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="appdata.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

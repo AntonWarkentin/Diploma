@@ -1,9 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using Core.BaseObjects.DataModels;
+using Newtonsoft.Json;
 using System.Globalization;
 
 namespace BusinessObjects.DataModels.Models
 {
-    public class DefectDataModel
+    public class DefectDataModel : BaseDataModel
     {
         public enum Severities
         {
@@ -21,7 +22,7 @@ namespace BusinessObjects.DataModels.Models
 
         [JsonProperty("actual_result", NullValueHandling = NullValueHandling.Ignore)]
         public string ActualResult { get; set; }
-        
+
         [JsonProperty("severity", NullValueHandling = NullValueHandling.Ignore)]
         public string Severity { get; set; }
 

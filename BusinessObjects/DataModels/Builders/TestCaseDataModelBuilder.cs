@@ -1,11 +1,13 @@
 ﻿using Bogus;
 using BusinessObjects.DataModels.Models;
+using Core.BaseObjects.DataModels;
+using System.Reflection;
 
 namespace BusinessObjects.DataModels.Builders
 {
-    public class TestCaseDataModelBuilder
+    public class TestCaseDataModelBuilder : BaseBuilder
     {
-        public static TestCaseModel NewTestCaseModel()
+        public static TestCaseModel NewTestCaseModel(bool needLogging = true)
         {
             var faker = new Faker();
             var model = new TestCaseModel()
@@ -25,20 +27,24 @@ namespace BusinessObjects.DataModels.Builders
                 Postconditions = $"Postcon_{faker.Hacker.Phrase()}",
             };
 
+            if (needLogging) logger.Info($"{MethodBase.GetCurrentMethod().Name}:{model.ToString()}");
+
             return model;
         }
 
         public static TestCasesBulkModel NewTestCasesBulkModel(int amountOfCases)
         {
-            var cases = new TestCasesBulkModel();
-            cases.Cases = new TestCaseModel[amountOfCases];
+            var model = new TestCasesBulkModel();
+            model.Cases = new TestCaseModel[amountOfCases];
 
             for (int i = 0; i < amountOfCases; i++)
             {
-                cases.Cases[i] = NewTestCaseModel();
+                model.Cases[i] = NewTestCaseModel(false);
             }
 
-            return cases;
+            logger.Info($"{MethodBase.GetCurrentMethod().Name}:{model.ToString()}");
+
+            return model;
         }
     }
 }

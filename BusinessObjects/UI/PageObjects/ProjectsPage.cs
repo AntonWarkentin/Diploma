@@ -32,6 +32,7 @@ namespace BusinessObjects.UI.PageObjects
 
         public ProjectPage CreateNewProject(ProjectDataModel dataModel)
         {
+            logger.Info("Creating new project with code" + dataModel.Code);
             CreateButton.Click();
             CreateNewProjectModal.FillNewProjectData(dataModel);
             return new ProjectPage(dataModel.Code);
@@ -57,6 +58,8 @@ namespace BusinessObjects.UI.PageObjects
         
         public ProjectPage OpenProject(string projectCode)
         {
+            logger.Info("Searching for project with code" + projectCode);
+
             ProjectTitle = this.SearchForProject(projectCode);
 
             ProjectTitle.Click();
@@ -66,6 +69,8 @@ namespace BusinessObjects.UI.PageObjects
         public ProjectsPage DeleteProject(string projectCode)
         {
             this.SearchForProject(projectCode);
+
+            logger.Info("Deleting project with code" + projectCode);
 
             ProjectsDropDown = new(projectCode);
             ProjectsDropDown.SelectOption(ProjectsDropDown.DeleteButton);

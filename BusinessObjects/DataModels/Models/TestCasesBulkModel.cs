@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using Core.BaseObjects.DataModels;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace BusinessObjects.DataModels.Models
 {
-    public class TestCasesBulkModel
+    public class TestCasesBulkModel : BaseDataModel
     {
         [JsonProperty("cases")]
         public TestCaseModel[] Cases { get; set; }
@@ -16,6 +18,18 @@ namespace BusinessObjects.DataModels.Models
         public override int GetHashCode()
         {
             return HashCode.Combine(Cases);
+        }
+
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            foreach(TestCaseModel testCase in Cases)
+            {
+                stringBuilder.Append(testCase.ToString());
+            }
+
+            return stringBuilder.ToString();
         }
     }
 }
