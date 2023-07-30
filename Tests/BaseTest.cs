@@ -1,4 +1,5 @@
-﻿using Core.SeleniumObjects.UI;
+﻿using Core.Helpers;
+using Core.SeleniumObjects.UI;
 using NLog;
 
 namespace Tests
@@ -16,6 +17,8 @@ namespace Tests
         [TearDown]
         public void TearDown()
         {
+            if (TestContext.CurrentContext.Result.FailCount > 0) Browser.Instance.Driver.TakeScreenShot();
+
             logger.Info($"Finishing execution of AT '{TestContext.CurrentContext.Test.FullName}'");
             Browser.Instance.CloseBrowser();
         }

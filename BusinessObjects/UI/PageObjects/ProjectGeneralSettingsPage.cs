@@ -9,6 +9,7 @@ namespace BusinessObjects.UI.PageObjects
         const string updateSettingsMessage = "Project settings were successfully updated!";
 
         string url = "https://app.qase.io/project/{0}/settings/general";
+        string projectCode;
 
         private TextField ProjectNameField = new("//input[@id='project-name']");
         private TextField ProjectCodeField = new("//input[@id='project-code']");
@@ -20,6 +21,7 @@ namespace BusinessObjects.UI.PageObjects
         public ProjectGeneralSettingsPage(string projectCode) : base()
         {
             url = string.Format(url, projectCode);
+            this.projectCode = projectCode;
         }
 
         public override ProjectGeneralSettingsPage OpenPage() => (ProjectGeneralSettingsPage)base.OpenPage();
@@ -38,6 +40,8 @@ namespace BusinessObjects.UI.PageObjects
 
         public void UpdateSettings(ProjectDataModel updatedValues)
         {
+            logger.Info($"Updating values of project with code {projectCode}");
+            
             ProjectNameField.SendKeys(updatedValues.Name);
             DescriptionField.SendKeys(updatedValues.Description);
             UpdateSettingsButton.Click();
