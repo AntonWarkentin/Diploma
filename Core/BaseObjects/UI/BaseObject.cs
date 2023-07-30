@@ -9,7 +9,7 @@ namespace Core.BaseObjects.UI
     {
         protected IWebDriver driver => Browser.Instance.Driver;
 
-        protected WebDriverWait wait => new WebDriverWait(driver, new TimeSpan(0, 0, 20));
+        protected WebDriverWait wait => new WebDriverWait(driver, new TimeSpan(0, 0, 10));
 
         protected Logger logger = LogManager.GetCurrentClassLogger();
 
