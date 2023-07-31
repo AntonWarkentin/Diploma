@@ -8,7 +8,7 @@ using Tests.Core;
 namespace Tests.API_Tests
 {
     [AllureSuite("Suite API Tests")]
-    [Category("Suite Tests")]
+    [Category("Suite_Tests")]
     public class SuiteTests : BaseTest
     {
         [Test]
