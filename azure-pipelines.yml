@@ -50,6 +50,8 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'allure generate $(Build.SourcesDirectory)\Tests\bin\Debug\net6.0\allure-results'
+    displayName: 'Command Line Script'
+    condition: succeededOrFailed()
 
 - task: PublishAllureReport@1
   inputs:
