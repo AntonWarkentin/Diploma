@@ -46,12 +46,11 @@ steps:
   displayName: 'Run tests'
   inputs:
     command: 'test'
+    arguments: '--filter "Suite Tests"'
 
-- task: CmdLine@2
-  inputs:
-    script: 'allure generate $(Build.SourcesDirectory)\Tests\bin\Debug\net6.0\allure-results'
-    displayName: 'Command Line Script'
-    condition: succeededOrFailed()
+- script: 'allure generate $(Build.SourcesDirectory)\Tests\bin\Debug\net6.0\allure-results'
+  displayName: 'Command Line Script'
+  condition: succeededOrFailed()
 
 - task: PublishAllureReport@1
   inputs:
