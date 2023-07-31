@@ -32,10 +32,6 @@ steps:
     command: 'build'
     arguments: '--configuration Debug'
 
-- task: CmdLine@2
-  inputs:
-    script: 'echo $(Build.SourcesDirectory)\Tests'
-
 - task: JsonPatch@4
   inputs:
     SyntaxType: 'slick'
