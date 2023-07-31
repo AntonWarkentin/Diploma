@@ -16,6 +16,8 @@ schedules:
     include:
     - develop
 
+steps:
+
 - task: JsonPatch@4
   inputs:
     SyntaxType: 'slick'
@@ -25,7 +27,6 @@ schedules:
     FailIfNoPatchApplied: true
     TreatErrors: 'ERROR'
 
-steps:
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
