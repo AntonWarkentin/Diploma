@@ -46,7 +46,7 @@ steps:
   displayName: 'Run tests'
   inputs:
     command: 'test'
-    arguments: '--filter category=Suite_Tests'
+    arguments: '--filter Category=Suite_Tests'
 
 - script: 'allure generate $(Build.SourcesDirectory)\Tests\bin\Debug\net6.0\allure-results'
   displayName: 'Command Line Script'
