@@ -42,12 +42,15 @@ steps:
       = /Api/Token => "$(ApiToken)"
     TreatErrors: 'ERROR'
 
-- task: CmdLine@2
-  inputs:
-    script: |
-      echo Build has been started
-
 - task: DotNetCoreCLI@2
   displayName: 'Run tests'
   inputs:
     command: 'test'
+
+- task: CmdLine@2
+  inputs:
+    script: 'allure generate $(Build.SourcesDirectory)\Tests\bin\Debug\net6.0\allure-results'
+
+- task: PublishAllureReport@1
+  inputs:
+    reportDir: 'allure-report'
