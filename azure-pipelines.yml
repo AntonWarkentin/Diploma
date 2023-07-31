@@ -18,18 +18,7 @@ schedules:
 
 steps:
 
-- task: CmdLine@2
-  inputs:
-    script: 'echo $(Build.SourcesDirectory)'
 
-- task: JsonPatch@4
-  inputs:
-    SyntaxType: 'slick'
-    JsonWorkingDir: '$(Build.SourcesDirectory)'
-    JsonTargetFilters: 'appdata.json'
-    JsonPatchContent: '= /User/Password => "$(Password)"'
-    FailIfNoPatchApplied: true
-    TreatErrors: 'ERROR'
 
 - task: NuGetToolInstaller@1
 
@@ -44,6 +33,19 @@ steps:
   inputs:
     command: 'build'
     arguments: '--configuration Debug'
+
+- task: CmdLine@2
+  inputs:
+    script: 'echo $(Build.SourcesDirectory)'
+
+- task: JsonPatch@4
+  inputs:
+    SyntaxType: 'slick'
+    JsonWorkingDir: '$(Build.SourcesDirectory)'
+    JsonTargetFilters: 'appdata.json'
+    JsonPatchContent: '= /User/Password => "$(Password)"'
+    FailIfNoPatchApplied: true
+    TreatErrors: 'ERROR'
 
 - task: CmdLine@2
   inputs:
