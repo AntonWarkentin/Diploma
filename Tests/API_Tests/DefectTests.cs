@@ -8,6 +8,7 @@ using Tests.Core;
 namespace Tests.API_Tests
 {
     [AllureSuite("Defect API Tests")]
+    [Category("Defect Tests")]
     public class DefectTests : BaseTest
     {
         [Test]
