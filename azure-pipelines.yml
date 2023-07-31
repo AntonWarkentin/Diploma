@@ -18,6 +18,10 @@ schedules:
 
 steps:
 
+- task: CmdLine@2
+  inputs:
+    script: 'echo $(Build.SourcesDirectory)'
+
 - task: JsonPatch@4
   inputs:
     SyntaxType: 'slick'
