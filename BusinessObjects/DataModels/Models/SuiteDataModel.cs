@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Core.BaseObjects.DataModels;
+using Newtonsoft.Json;
 
 namespace BusinessObjects.DataModels.Models
 {
-    public class SuiteDataModel
+    public class SuiteDataModel : BaseDataModel
     {
         [JsonProperty("title")]
         public string Title { get; set; }

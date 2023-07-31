@@ -1,4 +1,5 @@
 ﻿using Core.Configuration.Logic;
+using NLog;
 
 namespace Core.SeleniumObjects.API
 {
@@ -14,16 +15,15 @@ namespace Core.SeleniumObjects.API
         private static BaseApiService instance = null;
         public static BaseApiService Instance => GetBaseApiService();
 
-        private static BaseApiService GetBaseApiService()
-        {
-            return BaseApiInstances.Value ??= new BaseApiService();
-        }
-
-
         public BaseApiService()
         {
             apiClient = new BaseApiClient(BaseUrl);
             apiClient.AddToken();
+        }
+
+        private static BaseApiService GetBaseApiService()
+        {
+            return BaseApiInstances.Value ??= new BaseApiService();
         }
     }
 }

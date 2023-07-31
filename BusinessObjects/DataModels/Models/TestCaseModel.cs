@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Core.BaseObjects.DataModels;
+using Newtonsoft.Json;
 
 namespace BusinessObjects.DataModels.Models
 {
-    public class TestCaseModel
+    public class TestCaseModel : BaseDataModel
     {
         public int Id { get; set; }
         public int Position { get; set; }

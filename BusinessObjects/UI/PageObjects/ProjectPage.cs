@@ -52,6 +52,8 @@ namespace BusinessObjects.UI.PageObjects
 
         public void CreateSuite(SuiteDataModel suitData)
         {
+            logger.Info($"Creating new suite with title '{suitData.Title}' in project {projectCode}");
+            
             SuiteNameButton = new(SuiteNameButtonXpath, suitData.Title);
             CreateSuiteButton.Click();
             CreateSuiteModal.FillNewSuiteValues(suitData);
@@ -61,6 +63,8 @@ namespace BusinessObjects.UI.PageObjects
         
         public ProjectPage CreateTestCase(TestCaseModel data)
         {
+            logger.Info($"Creating new test case '{data.Title}' in project {projectCode}");
+            
             CreateCaseButton.Click();
             new CreateTestCasePage(projectCode).FillTestCaseData(data);
             Assert.That(Alert.Text, Is.EqualTo(createTestCaseMessage));
@@ -69,6 +73,8 @@ namespace BusinessObjects.UI.PageObjects
 
         public void DeleteSuite(string suiteName)
         {
+            logger.Info($"Deleting suite wuth name '{suiteName}' in project {projectCode}");
+
             SuiteNameButton = new(SuiteNameButtonXpath, suiteName);
             DeleteSuiteButton = new(DeleteSuiteButtonXpath, suiteName);
 
@@ -87,11 +93,13 @@ namespace BusinessObjects.UI.PageObjects
 
         public void DeleteTestCase(string title)
         {
+            logger.Info($"Deleting test case '{title}' in project {projectCode}");
+
             TestCaseCheckBoxButton = new(TestCaseCheckBoxButtonXpath, title);
 
             ShowAllTestSuites();
-
             TestCaseCheckBoxButton.Click();
+
             DeleteCheckedTestCasesButton.Click();
             DeleteTestCaseModal.Confirm();
 
@@ -101,10 +109,11 @@ namespace BusinessObjects.UI.PageObjects
 
         public void DeleteTestCasesBulk(List<string> titles)
         {
+            logger.Info($"Deleting test cases '{string.Join("','", titles)}' in project {projectCode}");
+
             deleteSeveralTestCasesMessage = string.Format(deleteSeveralTestCasesMessage, titles.Count);
 
             ShowAllTestSuites();
-
             titles.ForEach(x => new Button(TestCaseCheckBoxButtonXpath, x).Click());
 
             DeleteCheckedTestCasesButton.Click();

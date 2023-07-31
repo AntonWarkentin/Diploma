@@ -1,9 +1,11 @@
 ﻿using Bogus;
 using BusinessObjects.DataModels.Models;
+using Core.BaseObjects.DataModels;
+using System.Reflection;
 
 namespace BusinessObjects.DataModels.Builders
 {
-    public class SuiteDataModelBuilder
+    public class SuiteDataModelBuilder : BaseBuilder
     {
         public static SuiteDataModel NewSuiteModel()
         {
@@ -14,6 +16,8 @@ namespace BusinessObjects.DataModels.Builders
                 Description = $"Descr_{faker.Hacker.Phrase()}",
                 Preconditions = $"Precon_{faker.Hacker.Phrase()}",
             };
+
+            logger.Info($"{MethodBase.GetCurrentMethod().Name}:{model.ToString()}");
 
             return model;
         }
@@ -27,6 +31,8 @@ namespace BusinessObjects.DataModels.Builders
                 Description = $"upd_Descr_{faker.Hacker.Phrase()}",
                 Preconditions = $"upd_Precon_{faker.Hacker.Phrase()}",
             };
+
+            logger.Info($"{MethodBase.GetCurrentMethod().Name}:{model.ToString()}");
 
             return model;
         }

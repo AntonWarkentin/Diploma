@@ -1,8 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using Core.BaseObjects.DataModels;
+using System.Text.Json.Serialization;
 
 namespace BusinessObjects.DataModels.Models
 {
-    public class CreateProjectModel
+    public class CreateProjectModel : BaseDataModel
     {
         public string Title { get; set; }
         public string Code { get; set; }
