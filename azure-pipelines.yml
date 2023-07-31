@@ -23,7 +23,7 @@ steps:
     SyntaxType: 'slick'
     JsonWorkingDir: '$(Build.SourcesDirectory)'
     JsonTargetFilters: 'appdata.json'
-    JsonPatchContent: '= /User/Password = "$(Password )"'
+    JsonPatchContent: '= /User/Password => "$(Password)"'
     FailIfNoPatchApplied: true
     TreatErrors: 'ERROR'
 
