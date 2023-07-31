@@ -1,6 +1,7 @@
 ﻿using Core.Configuration.Logic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 
 namespace Core.SeleniumObjects.UI
 {
@@ -17,6 +18,14 @@ namespace Core.SeleniumObjects.UI
             options.AddArgument("--start-maximized");
 
             return new ChromeDriver(options);
+        }
+
+        public static IWebDriver CreateFirefoxDriver()
+        {
+            FirefoxOptions options = new FirefoxOptions();
+            options.AddArgument("--headless");
+
+            return new FirefoxDriver(options);
         }
     }
 }

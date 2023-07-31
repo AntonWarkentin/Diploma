@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-
-namespace Core.BaseObjects.UI
+﻿namespace Core.BaseObjects.UI
 {
     public abstract class BaseDropDown : BaseObject
     {

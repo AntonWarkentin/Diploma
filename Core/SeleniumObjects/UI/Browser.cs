@@ -22,7 +22,12 @@ namespace Core.SeleniumObjects.UI
 
         private Browser()
         {
-            driver = WebDriverFactory.CreateChromeDriver();
+            driver = AppConfiguration.Browser.TypeBrowser.ToLower() switch
+            {
+                "chrome" => WebDriverFactory.CreateChromeDriver(),
+                "firefox" => WebDriverFactory.CreateFirefoxDriver(),
+                _ => WebDriverFactory.CreateChromeDriver()
+            };
 
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(AppConfiguration.Browser.TimeOut);
             driver.Manage().Window.Maximize();
