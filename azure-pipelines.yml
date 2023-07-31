@@ -16,6 +16,15 @@ schedules:
     include:
     - develop
 
+- task: JsonPatch@4
+  inputs:
+    SyntaxType: 'slick'
+    JsonWorkingDir: '$(Build.SourcesDirectory)'
+    JsonTargetFilters: 'appdata.json'
+    JsonPatchContent: '= /User/Password = "$(Password )"'
+    FailIfNoPatchApplied: true
+    TreatErrors: 'ERROR'
+
 steps:
 - task: NuGetToolInstaller@1
 
