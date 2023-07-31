@@ -36,12 +36,12 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 'echo $(Build.SourcesDirectory)'
+    script: 'echo $(Build.SourcesDirectory)\Tests'
 
 - task: JsonPatch@4
   inputs:
     SyntaxType: 'slick'
-    JsonWorkingDir: '$(Build.SourcesDirectory)'
+    JsonWorkingDir: '$(Build.SourcesDirectory)\Tests'
     JsonTargetFilters: 'appdata.json'
     JsonPatchContent: '= /User/Password => "$(Password)"'
     FailIfNoPatchApplied: true
