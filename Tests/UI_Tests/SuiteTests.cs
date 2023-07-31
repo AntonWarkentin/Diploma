@@ -6,6 +6,7 @@ using Tests.Core;
 namespace Tests.UI_Tests
 {
     [AllureSuite("Suite UI Tests")]
+    [Category("Suite Tests")]
     public class SuiteTests : BaseUITest
     {
         [Test]
