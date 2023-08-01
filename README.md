@@ -63,4 +63,5 @@ Insert url of this project and select solution directory.
 in directory .\Tests\bin\Debug\net6.0
 
 run script
+
 ```allure serve```
